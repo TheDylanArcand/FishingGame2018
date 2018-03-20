@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public int RandomIndex(List<GameObject> list)
+    public int RandomIndex(Dictionary<int, GameObject> Dict)
     {
         Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
 
-        return Random.Range(0, list.Count);
+        return Random.Range(0, Dict.Count);
     }
 }
