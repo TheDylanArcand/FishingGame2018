@@ -5,22 +5,33 @@ using UnityEngine;
 public class ThrowingLine : MonoBehaviour
 {
     public GameObject FishingLine;
+    public List<GameObject> FishAvailable;
     public CatchingScript FishStatus;
 
-    private float CastBuffer = 0.001f;
+    private float _CastBuffer = 0.001f;
     private float _CastBufferTime;
-    private bool LineCasted = false;
+    private bool _LineCasted = false;
+
+    private Dictionary<int, GameObject> _FishDictionary = new Dictionary<int, GameObject>();
 
     private void Awake()
     {
-        _CastBufferTime = CastBuffer;
+        _CastBufferTime = _CastBuffer;
+
+        if (FishAvailable != null)
+        {
+            for (int i = 0; i < FishAvailable.Count; i++)
+            {
+                _FishDictionary.Add(i, FishAvailable[i]);
+            }
+        }
 
         if (FishingLine != null)
         {
             FishStatus = FishingLine.GetComponent<CatchingScript>();
         }
 
-        if(FishStatus == null)
+        if (FishStatus == null)
         {
             Debug.Log("Failed to load FishStatus");
         }
@@ -28,9 +39,9 @@ public class ThrowingLine : MonoBehaviour
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !LineCasted && (Time.time > _CastBufferTime))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_LineCasted && (Time.time > _CastBufferTime))
         {
-            LineCasted = true;
+            _LineCasted = true;
 
             if (FishingLine != null)
             {
@@ -43,10 +54,10 @@ public class ThrowingLine : MonoBehaviour
                 Debug.Log("Fishing Line has not been added in inspector");
             }
 
-            _CastBufferTime = Time.time + CastBuffer;
+            _CastBufferTime = Time.time + _CastBuffer;
         }
 
-        if(FishingLine != null && LineCasted)
+        if (FishingLine != null && _LineCasted)
         {
             if (FishStatus != null)
             {
@@ -54,15 +65,22 @@ public class ThrowingLine : MonoBehaviour
                 {
                     if (FishStatus.FishCatchable == true)
                     {
-                        Debug.Log("Fish was successfully caught!");
+                        if ( _FishDictionary != null)
+                        {
+                            Debug.Log("Fish #" + GameManager.instance.RandomIndex(_FishDictionary) + " was successfully caught!");
+                        }
+                        else
+                        {
+                            Debug.Log("Fish was successfully caught! Also put the fish in");
+                        }
                     }
 
                     Debug.Log("Reeling line back in");
 
                     FishingLine.SetActive(false);
-                    LineCasted = false;
+                    _LineCasted = false;
 
-                    _CastBufferTime = Time.time + CastBuffer;
+                    _CastBufferTime = Time.time + _CastBuffer;
                 }
             }
         }

@@ -26,7 +26,7 @@ public class LootboxHandler : MonoBehaviour
             }
         }
 
-        if(_LootItemDictionary != null)
+        if (_LootItemDictionary != null)
         {
             Debug.Log("There are things in LootItemDictionary");
         }
@@ -34,7 +34,7 @@ public class LootboxHandler : MonoBehaviour
 	
 	void Update ()
     {
-		if(Input.GetKeyDown(KeyCode.Mouse0))
+		if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (LootBox != null && _LootItemDictionary != null && !_LootOpened && Time.time > _LootBufferTime)
             {
@@ -49,7 +49,7 @@ public class LootboxHandler : MonoBehaviour
                 _LootBufferTime = Time.time + LootBuffer;
             }
 
-            if(LootBox!= null && _LootItemDictionary != null && _LootOpened && Time.time > _LootBufferTime)
+            if (LootBox!= null && _LootItemDictionary != null && _LootOpened && Time.time > _LootBufferTime)
             {
                 LootBox.SetActive(true);
 

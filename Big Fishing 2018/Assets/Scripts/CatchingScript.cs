@@ -28,12 +28,12 @@ public class CatchingScript : MonoBehaviour {
 
     void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Debug.Log("Time remaining: " + (_TimeUntilBite - Time.time));
         }
 
-		if(Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
+		if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
         {
             if (AudioSource != null)
             {
@@ -45,7 +45,7 @@ public class CatchingScript : MonoBehaviour {
             }
         }
 
-        if(Time.time > _TimeUntilBite + FishingBuffer)
+        if (Time.time > _TimeUntilBite + FishingBuffer)
         {
             FishCatchable = false;
             RandomTimeCreation();
