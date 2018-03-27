@@ -9,20 +9,49 @@ public class CatchingScript : MonoBehaviour {
     public float FishingBuffer = 10f;
     public float MinimumWait = 0.5f;
     public float MaximumWait = 4.0f;
+    public float SpawnPositionY = 0.15f;
+    public float SpawnPositionBorder = 0.9f;
     public AudioSource AudioSource;
+    public GameObject WaterPlane;
 
     [HideInInspector]
     public bool FishCatchable = false;
 
     private float _TimeUntilBite;
+    private Vector3 _SpawnLocation;
 
     private void Awake()
     {
-        AudioSource = GetComponent<AudioSource>();
+        if (WaterPlane != null)
+        {
+            MeshRenderer MeshRenderer = WaterPlane.GetComponent<MeshRenderer>();
+
+            if (MeshRenderer != null)
+            {
+                _SpawnLocation = MeshRenderer.bounds.extents;
+            }
+        }
+
+        if (AudioSource != null)
+        {
+            AudioSource = GetComponent<AudioSource>();
+        }
     }
 
     private void OnEnable()
     {
+        Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
+
+        if (WaterPlane != null)
+        {
+            transform.Translate(-transform.position);
+            transform.Translate(FindBobberSpawnLocation());
+        }
+        else
+        {
+            Debug.Log("Position defaulted to standard position, please add the plane to [Catching Script]");
+        }
+
         RandomTimeCreation();
     }
 
@@ -54,9 +83,20 @@ public class CatchingScript : MonoBehaviour {
 
     void RandomTimeCreation()
     {
-        Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
         float _WhenToBite = Random.Range(MinimumWait, MaximumWait) * _SecondsToMinuteConversion;
         _TimeUntilBite = Time.time + _WhenToBite;
         Debug.Log("Time until fish is active: " + _WhenToBite);
+    }
+
+    Vector3 FindBobberSpawnLocation()
+    {
+        Vector3 pos = WaterPlane.transform.position;
+        float randX = Random.Range(-_SpawnLocation.x, _SpawnLocation.x) * SpawnPositionBorder;
+        float randZ = Random.Range(-_SpawnLocation.z, _SpawnLocation.z) * SpawnPositionBorder;
+        Vector3 randOffset = new Vector3(randX, SpawnPositionY, randZ);
+        
+        pos += randOffset;
+        
+        return pos;
     }
 }

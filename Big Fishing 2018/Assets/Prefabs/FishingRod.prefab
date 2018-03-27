@@ -67,8 +67,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628412442470966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4704344752108886}
   m_RootOrder: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishingLine: {fileID: 1628412442470966}
+  FishAvailable: []
   FishStatus: {fileID: 114987209475190118}
 --- !u!114 &114987209475190118
 MonoBehaviour:
@@ -217,7 +218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishingBuffer: 10
-  MinimumWait: 0.5
-  MaximumWait: 4
+  MinimumWait: 0.25
+  MaximumWait: 0.5
+  SpawnPositionY: 0.15
+  SpawnPositionBorder: 0.9
   AudioSource: {fileID: 82529720423410542}
+  WaterPlane: {fileID: 0}
   FishCatchable: 0
