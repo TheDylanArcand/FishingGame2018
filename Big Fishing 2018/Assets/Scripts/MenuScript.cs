@@ -3,58 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum Scenes { MainMenu, NotMainMenu};
-
 public class MenuScript : MonoBehaviour {
 
-    Scenes CurrentScene;
-    Scene scene;
+    private const string SCENE_MAINMENU = "Main-Menu Scene";
+    private const string SCENE_LOOTBOX = "Loot-Box Scene";
+    private const string SCENE_FISHING = "Fishing Scene";
+    private const string SCENE_SKILLTREE = "Skill Tree Scene";
 
-    // Use this for initialization
-    void Awake ()
+    public void GotoMainMenu()
     {
-        scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(SCENE_MAINMENU);
+    }
 
-        if (scene.name == "MainMenu")
-        {
-            CurrentScene = Scenes.MainMenu;
-        }
-        else
-        {
-            CurrentScene = Scenes.NotMainMenu;
-        }
-	}
-
-    private void OnGUI()
+    public void GotoLootBox()
     {
-        switch (CurrentScene)
-        {
-            case Scenes.MainMenu:
+        SceneManager.LoadScene(SCENE_LOOTBOX);
+    }
 
-                if (GUI.Button(new Rect(10f, 10f, 200f, 50f), "Fishing Game!"))
-                {
-                    CurrentScene = Scenes.NotMainMenu;
-                    SceneManager.LoadScene("Fishing Game");
-                }
+    public void GotoFishing()
+    {
+        SceneManager.LoadScene(SCENE_FISHING);
+    }
 
-                if (GUI.Button(new Rect(10f, 70f, 200f, 50f), "Loot Opening!"))
-                {
-                    CurrentScene = Scenes.NotMainMenu;
-                    SceneManager.LoadScene("Loot-Box Screen");
-                }
-                break;
-
-            case Scenes.NotMainMenu:
-
-                if (GUI.Button(new Rect(10f, 708f, 200f, 50f), "Main Menu"))
-                {
-                    CurrentScene = Scenes.MainMenu;
-                    SceneManager.LoadScene("MainMenu");
-                }
-                break;
-
-            default:
-                break;
-        }
+    public void GotoSkillTree()
+    {
+        SceneManager.LoadScene(SCENE_SKILLTREE);
     }
 }

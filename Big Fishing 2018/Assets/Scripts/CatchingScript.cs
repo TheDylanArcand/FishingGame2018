@@ -90,13 +90,13 @@ public class CatchingScript : MonoBehaviour {
 
     Vector3 FindBobberSpawnLocation()
     {
-        Vector3 pos = WaterPlane.transform.position;
-        float randX = Random.Range(-_SpawnLocation.x, _SpawnLocation.x) * SpawnPositionBorder;
-        float randZ = Random.Range(-_SpawnLocation.z, _SpawnLocation.z) * SpawnPositionBorder;
-        Vector3 randOffset = new Vector3(randX, SpawnPositionY, randZ);
+        Vector3 Position = WaterPlane.transform.position;
+        float RandomX = Random.Range(-_SpawnLocation.x, _SpawnLocation.x) * SpawnPositionBorder;
+        float RandomZ = Random.Range(-_SpawnLocation.z, _SpawnLocation.z) * SpawnPositionBorder;
+        Vector3 RandomOffset = new Vector3(RandomX, SpawnPositionY, RandomZ);
+
+        Position += RandomOffset;
         
-        pos += randOffset;
-        
-        return pos;
+        return Position;
     }
 }
