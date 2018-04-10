@@ -40,7 +40,7 @@ public class LootboxHandler : MonoBehaviour
             {
                 LootBox.SetActive(false);
 
-                _LootIndex = GameManager.instance.RandomIndex(_LootItemDictionary);
+                _LootIndex = GameManager.Instance.RandomIndex(_LootItemDictionary);
 
                 _LootItemDictionary[_LootIndex].SetActive(true);
 

@@ -67,7 +67,7 @@ public class ThrowingLine : MonoBehaviour
                     {
                         if ( _FishDictionary != null)
                         {
-                            Debug.Log("Fish #" + GameManager.instance.RandomIndex(_FishDictionary) + " was successfully caught!");
+                            Debug.Log("Fish #" + GameManager.Instance.RandomIndex(_FishDictionary) + " was successfully caught!");
                         }
                         else
                         {

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public int RandomIndex(Dictionary<int, GameObject> Dict)

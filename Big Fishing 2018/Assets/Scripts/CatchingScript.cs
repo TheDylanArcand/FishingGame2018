@@ -13,10 +13,11 @@ public class CatchingScript : MonoBehaviour {
     public float SpawnPositionBorder = 0.9f;
     public AudioSource AudioSource;
     public GameObject WaterPlane;
+    public GameObject FishHookedText;
 
     [HideInInspector]
     public bool FishCatchable = false;
-
+    
     private float _TimeUntilBite;
     private Vector3 _SpawnLocation;
 
@@ -42,6 +43,11 @@ public class CatchingScript : MonoBehaviour {
     {
         Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
 
+        if (FishHookedText != null)
+        {
+            FishHookedText.SetActive(false);
+        }
+
         if (WaterPlane != null)
         {
             transform.Translate(-transform.position);
@@ -55,6 +61,14 @@ public class CatchingScript : MonoBehaviour {
         RandomTimeCreation();
     }
 
+    private void OnDisable()
+    {
+        if (FishHookedText != null)
+        {
+            FishHookedText.SetActive(false);
+        }
+    }
+
     void Update ()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -62,20 +76,31 @@ public class CatchingScript : MonoBehaviour {
             Debug.Log("Time remaining: " + (_TimeUntilBite - Time.time));
         }
 
-		if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
+        if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
         {
             if (AudioSource != null)
             {
-                if (!FishCatchable)
+                AudioSource.Play();
+            }
+
+
+            if (!FishCatchable)
+            {
+                FishCatchable = true;
+                if (FishHookedText != null)
                 {
-                    FishCatchable = true;
-                    AudioSource.Play();
+                    FishHookedText.SetActive(true);
                 }
+
             }
         }
 
         if (Time.time > _TimeUntilBite + FishingBuffer)
         {
+            if (FishHookedText != null)
+            {
+                FishHookedText.SetActive(false);
+            }
             FishCatchable = false;
             RandomTimeCreation();
         }
