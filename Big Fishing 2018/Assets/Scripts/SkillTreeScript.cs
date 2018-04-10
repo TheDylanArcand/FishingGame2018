@@ -11,8 +11,16 @@ public class SkillTreeScript : MonoBehaviour
     private bool _ChangeMade = true;
     private int _PowerLevelFlatAdd = 0;
     private float _PowerLevelMultiplier = 0.0f;
-	
-	void Update ()
+
+    private void Awake()
+    {
+        if (PowerLevelText != null)
+        {
+            PowerLevelText = GetComponent<Text>();
+        }
+    }
+
+    void Update ()
     {
         if (_ChangeMade && PowerLevelText != null)
         {
