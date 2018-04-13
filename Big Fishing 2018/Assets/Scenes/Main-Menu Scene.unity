@@ -175,7 +175,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Big P's Fishing Extravaganza
+  m_Text: Dylan's Fishing Experiment
 --- !u!222 &20822831
 CanvasRenderer:
   m_ObjectHideFlags: 0
