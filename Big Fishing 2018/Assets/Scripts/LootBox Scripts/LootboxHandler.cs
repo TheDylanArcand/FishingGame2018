@@ -8,7 +8,6 @@ public class LootboxHandler : MonoBehaviour
     public GameObject LootBox;
     public List<GameObject> LootItem;
     public Text ItemText;
-    public float LootBuffer = 0.001f;
 
     private string[] _ItemPrefix =
     {
@@ -34,10 +33,8 @@ public class LootboxHandler : MonoBehaviour
         "Pain",
         "Nature"
     };
-
-    private bool _LootOpened = false;
+    
     private int _LootIndex;
-    private float _LootBufferTime;
     private Dictionary<int, GameObject> _LootItemDictionary = new Dictionary<int, GameObject>();
 
     void Awake ()
@@ -58,40 +55,26 @@ public class LootboxHandler : MonoBehaviour
         }
 	}
 	
-	void Update ()
+    public void OpenLootBox()
     {
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (LootBox != null && _LootItemDictionary != null && !_LootOpened && Time.time > _LootBufferTime)
-            {
-                LootBox.SetActive(false);
+        LootBox.SetActive(false);
 
-                _LootIndex = GameManager.Instance.RandomIndex(_LootItemDictionary);
+        _LootIndex = GameManager.Instance.RandomIndex(_LootItemDictionary);
 
-                _LootItemDictionary[_LootIndex].SetActive(true);
+        _LootItemDictionary[_LootIndex].SetActive(true);
 
-                _LootOpened = true;
+        ItemText.gameObject.SetActive(true);
+        ItemText.text = GenerateName(_LootIndex).ToString();
+    }
 
-                ItemText.gameObject.SetActive(true);
-                ItemText.text = GenerateName(_LootIndex).ToString();
+    public void CloseLootBox()
+    {
+        LootBox.SetActive(true);
 
-                _LootBufferTime = Time.time + LootBuffer;
-            }
+        _LootItemDictionary[_LootIndex].SetActive(false);
 
-            if (LootBox!= null && _LootItemDictionary != null && _LootOpened && Time.time > _LootBufferTime)
-            {
-                LootBox.SetActive(true);
-
-                _LootItemDictionary[_LootIndex].SetActive(false);
-
-                ItemText.gameObject.SetActive(false);
-
-                _LootOpened = false;
-
-                _LootBufferTime = Time.time + LootBuffer;
-            }
-        }
-	}
+        ItemText.gameObject.SetActive(false);
+    }
 
     string GenerateName(int index)
     {
