@@ -8,8 +8,9 @@ public class LootboxHandler : MonoBehaviour
     public GameObject LootBox;
     public List<GameObject> LootItem;
     public Text ItemText;
+	public ItemScript CreatedLoot;
 
-    private string[] _ItemPrefix =
+	private string[] _ItemPrefix =
     {
         "Fast",
         "Strong",
@@ -37,7 +38,7 @@ public class LootboxHandler : MonoBehaviour
     private int _LootIndex;
     private Dictionary<int, GameObject> _LootItemDictionary = new Dictionary<int, GameObject>();
 
-    void Awake ()
+	void Awake ()
     {
         Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
 
@@ -64,8 +65,13 @@ public class LootboxHandler : MonoBehaviour
         _LootItemDictionary[_LootIndex].SetActive(true);
 
         ItemText.gameObject.SetActive(true);
-        ItemText.text = GenerateName(_LootIndex).ToString();
-    }
+
+		//ItemText.text = GenerateName(_LootIndex).ToString();
+
+		CreatedLoot.Image = _LootItemDictionary[_LootIndex].GetComponent<Image>();
+		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
+
+	}
 
     public void CloseLootBox()
     {

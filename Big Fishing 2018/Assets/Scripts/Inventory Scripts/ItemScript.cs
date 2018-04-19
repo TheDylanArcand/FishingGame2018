@@ -6,5 +6,6 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class ItemScript : ScriptableObject
 {
-    public RawImage RawImage;
+    public Image Image;
+	public string Name;
 }
