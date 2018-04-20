@@ -68,7 +68,7 @@ public class LootboxHandler : MonoBehaviour
 
 		//ItemText.text = GenerateName(_LootIndex).ToString();
 
-		CreatedLoot.Image = _LootItemDictionary[_LootIndex].GetComponent<Image>();
+		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex].GetComponent<Image>().sprite;
 		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
 
 	}

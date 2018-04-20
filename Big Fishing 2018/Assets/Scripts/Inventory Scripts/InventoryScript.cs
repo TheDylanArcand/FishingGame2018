@@ -7,7 +7,7 @@ public class InventoryScript : MonoBehaviour
 {
     public const int NumberOfItemSlots = 4;
 
-    public Image[] ItemImages = new Image[NumberOfItemSlots];
+    public Sprite[] ItemImages = new Sprite[NumberOfItemSlots];
     public ItemScript[] Items = new ItemScript[NumberOfItemSlots];
 
     public void AddItem(ItemScript itemToAdd)
@@ -17,7 +17,7 @@ public class InventoryScript : MonoBehaviour
             if(Items[i] == null)
             {
                 Items[i] = itemToAdd;
-                ItemImages[i] = itemToAdd.Image;
+                ItemImages[i] = itemToAdd.Sprite;
                 return;
             }
         }

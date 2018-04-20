@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598fb66b52e6cc341858e8558b4ffc6a, type: 3}
   m_Name: CreatedItemInInventory
   m_EditorClassIdentifier: 
-  Image: {fileID: 0}
-  Name: Spooky Boots of Pain
+  Sprite: {fileID: 21300000, guid: 45d9c1eb7f439be4eaa92a4325da7b7e, type: 3}
+  Name: Spooky Sword of Destiny
