@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class LootboxHandler : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LootboxHandler : MonoBehaviour
     public List<GameObject> LootItem;
     public Text ItemText;
 	public ItemScript CreatedLoot;
+	public InventoryScript ItemTransferer;
 
 	private string[] _ItemPrefix =
     {
@@ -66,8 +68,6 @@ public class LootboxHandler : MonoBehaviour
 
         ItemText.gameObject.SetActive(true);
 
-		//ItemText.text = GenerateName(_LootIndex).ToString();
-
 		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex].GetComponent<Image>().sprite;
 		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
 
@@ -75,6 +75,9 @@ public class LootboxHandler : MonoBehaviour
 
     public void CloseLootBox()
     {
+		//AssetDatabase.CreateAsset(ItemScript, )
+		ItemTransferer.AddItem(CreatedLoot);
+
         LootBox.SetActive(true);
 
         _LootItemDictionary[_LootIndex].SetActive(false);
@@ -91,25 +94,25 @@ public class LootboxHandler : MonoBehaviour
         switch (index)
         {
             case 0:
-                itemType = "Breastplate";
+                CreatedLoot.SlotTag = itemType = "Chestpiece";
                 break;
             case 1:
-                itemType = "Gauntlets";
+				CreatedLoot.SlotTag = itemType = "Gloves";
                 break;
             case 2:
-                itemType = "Helm";
+				CreatedLoot.SlotTag = itemType = "Helm";
                 break;
             case 3:
-                itemType = "Leggings";
+				CreatedLoot.SlotTag = itemType = "Pants";
                 break;
             case 4:
-                itemType = "Boots";
+				CreatedLoot.SlotTag = itemType = "Boots";
                 break;
             case 5:
-                itemType = "Sword";
+				CreatedLoot.SlotTag = itemType = "Weapon";
                 break;
             default:
-                itemType = "Index larger than switch";
+				CreatedLoot.SlotTag = itemType = "Index larger than switch";
                 break;
         }
 

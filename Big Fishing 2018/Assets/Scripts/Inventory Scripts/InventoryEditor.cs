@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+/*
 [CustomEditor(typeof(InventoryScript))]
 public class InventoryEditor : Editor
 {
@@ -47,4 +47,4 @@ public class InventoryEditor : Editor
         EditorGUI.indentLevel--;
         EditorGUILayout.EndVertical();
     }
-}
+}*/

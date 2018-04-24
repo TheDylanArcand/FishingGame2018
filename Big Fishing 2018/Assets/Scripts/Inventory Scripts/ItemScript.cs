@@ -8,4 +8,5 @@ public class ItemScript : ScriptableObject
 {
     public Sprite Sprite;
 	public string Name;
+	public string SlotTag = "NotActive".ToString();
 }
