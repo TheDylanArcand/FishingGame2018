@@ -16,7 +16,6 @@ public class InventoryScript : MonoBehaviour
 
 	public GameObject EnlargedImage;
 	public Text EnlargedText;
-	private string EnlargedSlot;
 
 	private void Awake()
 	{
@@ -45,17 +44,18 @@ public class InventoryScript : MonoBehaviour
 
     public void RemoveItem(ItemScript itemToRemove)
     {
-		itemToRemove.Sprite = EnlargedImage.GetComponent<Sprite>();
+		itemToRemove.Sprite = EnlargedImage.GetComponent<Image>().sprite;
 		itemToRemove.Name = EnlargedText.text.ToString();
 
         for (int i = 0; i < Items.Length; i++)
         {
-			if (Items[i] == itemToRemove)
+			if (Items[i].Name == itemToRemove.Name && Items[i].Sprite == itemToRemove.Sprite)
             {
-                Items[i] = null;
-                ItemImages[i] = null;
+				Items[i] = ScriptableObject.CreateInstance<ItemScript>();
+				ItemImages[i] = null;
 				ItemTags[i] = "NotActive".ToString();
-                return;
+				ApplyItemChanges();
+				return;
             }
         }
     }
@@ -72,6 +72,7 @@ public class InventoryScript : MonoBehaviour
 			}
 			else
 			{
+				ItemSlots[i].GetComponent<Image>().sprite = null;
 				ItemSlots[i].GetComponent<Button>().interactable = false;
 			}
 		}
