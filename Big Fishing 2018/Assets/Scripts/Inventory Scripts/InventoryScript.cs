@@ -8,7 +8,8 @@ public class InventoryScript : MonoBehaviour
     public const int NumberOfItemSlots = 36;
 
     public Sprite[] ItemImages = new Sprite[NumberOfItemSlots];
-    public ItemScript[] Items = new ItemScript[NumberOfItemSlots];
+	public ItemScript[] Items = new ItemScript[NumberOfItemSlots];
+
 	public string[] ItemTags = new string[NumberOfItemSlots];
 
 	public GameObject[] ItemSlots = new GameObject[NumberOfItemSlots];
@@ -17,13 +18,24 @@ public class InventoryScript : MonoBehaviour
 	public Text EnlargedText;
 	private string EnlargedSlot;
 
+	private void Awake()
+	{
+
+		for (int i = 0; i < NumberOfItemSlots; i++)
+		{
+			if(Items[i] == null)
+				Items[i] = ScriptableObject.CreateInstance<ItemScript>();
+		}
+	}
+
 	public void AddItem(ItemScript itemToAdd)
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            if(Items[i] == null)
-            {
-                Items[i] = itemToAdd;
+            if(Items[i].SlotTag == "NotActive".ToString())
+			{
+				ItemScriptDeepCopy(Items[i], itemToAdd);
+				Items[i].name = ("Item #" + i).ToString();
                 ItemImages[i] = itemToAdd.Sprite;
 				ItemTags[i] = ItemTags.ToString();
 				return;
@@ -56,6 +68,7 @@ public class InventoryScript : MonoBehaviour
 			{
 				ItemSlots[i].GetComponent<Image>().sprite = Items[i].Sprite;
 				ItemSlots[i].name = Items[i].Name;
+				ItemSlots[i].GetComponent<Button>().interactable = true;
 			}
 			else
 			{
@@ -68,5 +81,12 @@ public class InventoryScript : MonoBehaviour
 	{
 		EnlargedImage.GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
 		EnlargedText.text = item.name.ToString();
+	}
+
+	private void ItemScriptDeepCopy(ItemScript LHS,  ItemScript RHS)
+	{
+		LHS.Name = RHS.Name;
+		LHS.Sprite = RHS.Sprite;
+		LHS.SlotTag = RHS.SlotTag;
 	}
 }
