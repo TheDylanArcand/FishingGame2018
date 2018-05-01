@@ -17,13 +17,17 @@ public class InventoryScript : MonoBehaviour
 	public GameObject EnlargedImage;
 	public Text EnlargedText;
 
+	private string _UnusedSlot = "00";
+
 	private void Awake()
 	{
-
 		for (int i = 0; i < NumberOfItemSlots; i++)
 		{
-			if(Items[i] == null)
+			if (Items[i] == null)
+			{
 				Items[i] = ScriptableObject.CreateInstance<ItemScript>();
+				Items[i].name = ("Item #" + i).ToString();
+			}
 		}
 	}
 
@@ -31,10 +35,9 @@ public class InventoryScript : MonoBehaviour
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            if(Items[i].SlotTag == "NotActive".ToString())
+            if(Items[i].SlotTag == _UnusedSlot)
 			{
 				ItemScriptDeepCopy(Items[i], itemToAdd);
-				Items[i].name = ("Item #" + i).ToString();
                 ItemImages[i] = itemToAdd.Sprite;
 				ItemTags[i] = ItemTags.ToString();
 				return;
@@ -53,7 +56,7 @@ public class InventoryScript : MonoBehaviour
             {
 				Items[i] = ScriptableObject.CreateInstance<ItemScript>();
 				ItemImages[i] = null;
-				ItemTags[i] = "NotActive".ToString();
+				ItemTags[i] = _UnusedSlot;
 				ApplyItemChanges();
 				return;
             }
@@ -64,7 +67,7 @@ public class InventoryScript : MonoBehaviour
 	{
 		for (int i = 0; i < NumberOfItemSlots; i++)
 		{
-			if (Items[i]!= null && Items[i].SlotTag != "NotActive".ToString())
+			if (Items[i]!= null && Items[i].SlotTag != _UnusedSlot)
 			{
 				ItemSlots[i].GetComponent<Image>().sprite = Items[i].Sprite;
 				ItemSlots[i].name = Items[i].Name;
