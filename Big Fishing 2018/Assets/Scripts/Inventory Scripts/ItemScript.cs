@@ -16,4 +16,16 @@ public class ItemScript : ScriptableObject
 		Name = null;
 		SlotTag = "00";
 	}
+
+	public ItemScript()
+	{
+		//0
+	}
+
+	public ItemScript(ItemScript item)
+	{
+		Sprite = item.Sprite;
+		Name = item.Name;
+		SlotTag = item.SlotTag;
+	}
 }

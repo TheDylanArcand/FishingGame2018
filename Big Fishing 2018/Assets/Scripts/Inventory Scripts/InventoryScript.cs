@@ -17,7 +17,7 @@ public class InventoryScript : MonoBehaviour
 	public GameObject EnlargedImage;
 	public Text EnlargedText;
 
-	private string _UnusedSlot = "00";
+	private const string _UnusedSlot = "00";
 
 	private void Awake()
 	{

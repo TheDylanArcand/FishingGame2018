@@ -13,86 +13,86 @@ public class ItemSortingAlgorithm : MonoBehaviour
 
 	private void Sort(ItemScript[] Items)
 	{
-		ItemScript[] ChestplateArray	= new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] GlovesArray		= new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] HelmArray			= new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] PantsArray			= new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] BootsArray			= new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] WeaponArray		= new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] ChestplateArray = new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] GlovesArray = new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] HelmArray = new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] PantsArray = new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] BootsArray = new ItemScript[_InventorySize.Items.Length];
+		ItemScript[] WeaponArray = new ItemScript[_InventorySize.Items.Length];
 		int ChestplateIndex = 0;
-		int	GlovesIndex		= 0;
-		int	HelmIndex		= 0;
-		int	PantsIndex		= 0;
-		int	BootsIndex		= 0;
-		int WeaponIndex		= 0;
-		int TotalIndex		= 0;
+		int GlovesIndex = 0;
+		int HelmIndex = 0;
+		int PantsIndex = 0;
+		int BootsIndex = 0;
+		int WeaponIndex = 0;
+		int TotalIndex = 0;
 
 		foreach (ItemScript item in Items)
 		{
 			switch (item.SlotTag)
 			{
 				case "Chestpiece":
-					ChestplateArray[ChestplateIndex] = item;
+					ChestplateArray[ChestplateIndex] = new ItemScript(item);
 					++ChestplateIndex;
 					item.CleanItem();
 					break;
 				case "Gloves":
-					GlovesArray[GlovesIndex] = item;
+					GlovesArray[GlovesIndex] = new ItemScript(item);
 					++GlovesIndex;
 					item.CleanItem();
 					break;
 				case "Helm":
-					HelmArray[HelmIndex] = item;
+					HelmArray[HelmIndex] = new ItemScript(item);
 					++HelmIndex;
 					item.CleanItem();
 					break;
 				case "Pants":
-					PantsArray[PantsIndex] = item;
+					PantsArray[PantsIndex] = new ItemScript(item);
 					++PantsIndex;
 					item.CleanItem();
 					break;
 				case "Boots":
-					BootsArray[BootsIndex] = item;
+					BootsArray[BootsIndex] = new ItemScript(item);
 					++BootsIndex;
 					item.CleanItem();
 					break;
 				case "Weapon":
-					WeaponArray[WeaponIndex] = item;
+					WeaponArray[WeaponIndex] = new ItemScript(item);
 					++WeaponIndex;
 					item.CleanItem();
 					break;
 				default:
 					break;
 			}
-
-			if (ChestplateIndex > 0)
-				AddToOldList(Items, ChestplateArray, ChestplateIndex, TotalIndex);
-
-			if (GlovesIndex > 0)
-				AddToOldList(Items, GlovesArray, GlovesIndex, TotalIndex);
-
-			if (HelmIndex > 0)
-				AddToOldList(Items, HelmArray, HelmIndex, TotalIndex);
-
-			if (PantsIndex > 0)
-				AddToOldList(Items, PantsArray, PantsIndex, TotalIndex);
-
-			if (BootsIndex > 0)
-				AddToOldList(Items, BootsArray, BootsIndex, TotalIndex);
-
-			if (WeaponIndex > 0)
-				AddToOldList(Items, WeaponArray, WeaponIndex, TotalIndex);
-
 		}
+
+		if (ChestplateIndex > 0)
+			TotalIndex = AddToOldList(Items, ChestplateArray, TotalIndex, ChestplateIndex);
+
+		if (GlovesIndex > 0)
+			TotalIndex = AddToOldList(Items, GlovesArray, TotalIndex, GlovesIndex);
+
+		if (HelmIndex > 0)
+			TotalIndex = AddToOldList(Items, HelmArray, TotalIndex, HelmIndex);
+
+		if (PantsIndex > 0)
+			TotalIndex = AddToOldList(Items, PantsArray, TotalIndex, PantsIndex);
+
+		if (BootsIndex > 0)
+			TotalIndex = AddToOldList(Items, BootsArray, TotalIndex, BootsIndex);
+
+		if (WeaponIndex > 0)
+			TotalIndex = AddToOldList(Items, WeaponArray, TotalIndex, WeaponIndex);
+
 	}
 
-	private void AddToOldList(ItemScript[] MainScript, ItemScript[] TempScript, int ArrayLengthIndex, int EndingIndex)
+	private int AddToOldList(ItemScript[] MainScript, ItemScript[] TempScript, int Index, int ArrayLength)
 	{
-		EndingIndex += ArrayLengthIndex;
-
-		for (int i = ArrayLengthIndex; i < EndingIndex; i++)
+		for (int i = Index; i < Index + ArrayLength; i++)
 		{
-			MainScript[i] = TempScript[i - ArrayLengthIndex];
+			MainScript[i] = new ItemScript(TempScript[i - Index]);
 		}
+
+		return Index + ArrayLength;
 	}
 }
