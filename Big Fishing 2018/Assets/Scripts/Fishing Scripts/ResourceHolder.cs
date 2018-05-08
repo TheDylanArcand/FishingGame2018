@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scriptable object to allow data saving inbetween scenes without having to load the data when moving scenes
+///		Possibly look into DontDestroyOnLoad for similar functionality
+/// </summary>
+
 [CreateAssetMenu]
 public class ResourceHolder : ScriptableObject
 {
+	//Serialized fields for private integers to allow changing in the editor but not in game
 	[SerializeField]
 	private int EXP = 0;
 	[SerializeField]
@@ -12,6 +18,7 @@ public class ResourceHolder : ScriptableObject
 	[SerializeField]
 	private int Powerlevel = 0;
 
+	//Getters and setters/ modifiers for use while running
 	public void ModifyEXP(int modifier)
 	{
 		EXP += modifier;

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// A modified inventory script that holds the information of item images, tags, and each slot the item is in
+/// </summary>
+
 public class InventoryScript : MonoBehaviour
 {
     public const int NumberOfItemSlots = 36;
@@ -19,6 +23,7 @@ public class InventoryScript : MonoBehaviour
 
 	private const string _UnusedSlot = "00";
 
+	//Fills the Items[i] with blank templates if no items exist in that spot
 	private void Awake()
 	{
 		for (int i = 0; i < NumberOfItemSlots; i++)
@@ -32,13 +37,17 @@ public class InventoryScript : MonoBehaviour
 		ApplyItemChanges();
 	}
 
+	//Adds a created item into the list
 	public void AddItem(ItemScript itemToAdd)
     {
         for (int i = 0; i < Items.Length; i++)
         {
+			//Determines of the slot is used or not
             if(Items[i].SlotTag == _UnusedSlot)
 			{
-				ItemScriptDeepCopy(Items[i], itemToAdd);
+				Items[i] = new ItemScript(itemToAdd);
+
+				//Displays the item you have recieved
                 ItemImages[i] = itemToAdd.Sprite;
 				ItemTags[i] = ItemTags.ToString();
 				return;
@@ -46,6 +55,7 @@ public class InventoryScript : MonoBehaviour
         }
     }
 
+	//Removes the item from the list
     public void RemoveItem(ItemScript itemToRemove)
     {
 		itemToRemove.Sprite = EnlargedImage.GetComponent<Image>().sprite;
@@ -64,6 +74,8 @@ public class InventoryScript : MonoBehaviour
         }
     }
 
+	//Sets the item button on the inventory screen either active or inactive depending on if there is an item in
+	//	in it or not
 	public void ApplyItemChanges()
 	{
 		for (int i = 0; i < NumberOfItemSlots; i++)
@@ -82,16 +94,10 @@ public class InventoryScript : MonoBehaviour
 		}
 	}
 
+	//Brings the item in an enlarged image
 	public void EnlargeItem(GameObject item)
 	{
 		EnlargedImage.GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
 		EnlargedText.text = item.name.ToString();
-	}
-
-	private void ItemScriptDeepCopy(ItemScript LHS,  ItemScript RHS)
-	{
-		LHS.Name = RHS.Name;
-		LHS.Sprite = RHS.Sprite;
-		LHS.SlotTag = RHS.SlotTag;
 	}
 }

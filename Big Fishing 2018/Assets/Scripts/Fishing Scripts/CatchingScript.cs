@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script controls the time of when the fish will be caught, where the bobber will be placed,
+///		and any sound effects that may play either before or during the time that the fish is able to be caught
+/// </summary>
+
 public class CatchingScript : MonoBehaviour {
 
     private const float _SecondsToMinuteConversion = 60f;
 
+	//Buffer is used in seconds, the Wait variables are minutes
     public float FishingBuffer = 10f;
     public float MinimumWait = 0.5f;
     public float MaximumWait = 4.0f;
@@ -39,6 +45,7 @@ public class CatchingScript : MonoBehaviour {
         }
     }
 
+	//Use of OnEnable and OnDisable to trigger objects to start
     private void OnEnable()
     {
         Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
@@ -71,12 +78,14 @@ public class CatchingScript : MonoBehaviour {
 
     void Update ()
     {
+		//Debug purposes
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Debug.Log("Time remaining: " + (_TimeUntilBite - Time.time));
         }
 
-        if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
+		//The player is able to catch a fish for (_TimeUntilBite) Seconds
+		if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
         {
             if (AudioSource != null)
             {
@@ -95,6 +104,7 @@ public class CatchingScript : MonoBehaviour {
             }
         }
 
+		//If the player misses catching the fish, they will have to wait for another fish to bite their lure
         if (Time.time > _TimeUntilBite + FishingBuffer)
         {
             if (FishHookedText != null)
@@ -106,6 +116,7 @@ public class CatchingScript : MonoBehaviour {
         }
 	}
 
+	//Time generation for when the fish is eligible to being caught
     void RandomTimeCreation()
     {
         float _WhenToBite = Random.Range(MinimumWait, MaximumWait) * _SecondsToMinuteConversion;
@@ -113,6 +124,7 @@ public class CatchingScript : MonoBehaviour {
         Debug.Log("Time until fish is active: " + _WhenToBite);
     }
 
+	//Randomizes the bobber location
     Vector3 FindBobberSpawnLocation()
     {
         Vector3 Position = WaterPlane.transform.position;

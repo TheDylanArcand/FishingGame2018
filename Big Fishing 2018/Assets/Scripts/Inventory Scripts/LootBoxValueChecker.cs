@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Monobehavior script to set buttons in the Loot-Box Scene either interactable or uninteractable depending
+///		on if you have any lootboxes to use or not
+/// </summary>
+
 public class LootBoxValueChecker : MonoBehaviour
 {
 	public ResourceHolder RS;
