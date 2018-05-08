@@ -29,6 +29,7 @@ public class InventoryScript : MonoBehaviour
 				Items[i].name = ("Item #" + i).ToString();
 			}
 		}
+		ApplyItemChanges();
 	}
 
 	public void AddItem(ItemScript itemToAdd)
