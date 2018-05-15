@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
+	public Toggle GoodFishingButton;
+
     private const string SCENE_MAINMENU = "Main-Menu Scene";
     private const string SCENE_LOOTBOX = "Loot-Box Scene";
-    private const string SCENE_FISHING = "Fishing Scene";
+	private const string SCENE_FISHING = "Fishing Scene";
+	private const string SCENE_FISHING_BETTER = "Fishing Scene Updated";
     private const string SCENE_SKILLTREE = "Skill Tree Scene";
 
     public void GotoMainMenu()
@@ -22,7 +26,10 @@ public class MenuScript : MonoBehaviour {
 
     public void GotoFishing()
     {
-        SceneManager.LoadScene(SCENE_FISHING);
+		if (GoodFishingButton.isOn)
+			SceneManager.LoadScene(SCENE_FISHING_BETTER);
+		else
+			SceneManager.LoadScene(SCENE_FISHING);
     }
 
     public void GotoSkillTree()

@@ -18,6 +18,4 @@ public class FishingRodScript : MonoBehaviour
 			transform.LookAt(Rod);
 		}
 	}
-
-
 }

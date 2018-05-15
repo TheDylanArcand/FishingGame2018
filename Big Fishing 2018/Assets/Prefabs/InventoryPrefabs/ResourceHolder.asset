@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0be97700a784b148b08ff3334b71e28, type: 3}
   m_Name: ResourceHolder
   m_EditorClassIdentifier: 
-  EXP: 100
+  EXP: 5000
   LootBoxCount: 6
   Powerlevel: 0

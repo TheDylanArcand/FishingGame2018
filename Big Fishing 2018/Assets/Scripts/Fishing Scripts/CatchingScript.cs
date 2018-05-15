@@ -42,8 +42,8 @@ public class CatchingScript : MonoBehaviour {
         if (AudioSource != null)
         {
             AudioSource = GetComponent<AudioSource>();
-        }
-    }
+		}
+	}
 
 	//Use of OnEnable and OnDisable to trigger objects to start
     private void OnEnable()
@@ -66,7 +66,9 @@ public class CatchingScript : MonoBehaviour {
         }
 
         RandomTimeCreation();
-    }
+
+		FishCatchable = false;
+	}
 
     private void OnDisable()
     {

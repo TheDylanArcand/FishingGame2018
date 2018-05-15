@@ -11,6 +11,9 @@ public class LootboxHandler : MonoBehaviour
 	public ItemScript CreatedLoot;
 	public InventoryScript ItemTransferer;
 
+	public Text LootboxText;
+	public ResourceHolder ResourceHolder;
+
 	private string[] _ItemPrefix =
     {
         "Fast",
@@ -55,6 +58,8 @@ public class LootboxHandler : MonoBehaviour
         {
             Debug.Log("There are things in LootItemDictionary");
         }
+
+		LootboxText.text = "Lootboxes: " + ResourceHolder.GetLootBoxCount();
 	}
 	
     public void OpenLootBox()
@@ -69,14 +74,15 @@ public class LootboxHandler : MonoBehaviour
 
 		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex].GetComponent<Image>().sprite;
 		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
+		ItemTransferer.AddItem(CreatedLoot);
+
+		ResourceHolder.ModifyLootBoxes(-1);
+		LootboxText.text = "Lootboxes: " + ResourceHolder.GetLootBoxCount();
 
 	}
 
     public void CloseLootBox()
     {
-		//AssetDatabase.CreateAsset(ItemScript, )
-		ItemTransferer.AddItem(CreatedLoot);
-
         LootBox.SetActive(true);
 
         _LootItemDictionary[_LootIndex].SetActive(false);

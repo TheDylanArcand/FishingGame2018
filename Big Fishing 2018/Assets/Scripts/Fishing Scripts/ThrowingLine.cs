@@ -49,7 +49,7 @@ public class ThrowingLine : MonoBehaviour
 		}
     }
 
-    public void CastFishingLine()
+	public void CastFishingLine()
     {
         if (FishingLine != null)
         {
@@ -85,7 +85,7 @@ public class ThrowingLine : MonoBehaviour
 						break;
 					case 3:
 						ResourceHolder.ModifyLootBoxes(1);
-						FishCaughtHUD.GetComponentInChildren<Text>().text = "1 Lootbox!";
+						FishCaughtHUD.GetComponentInChildren<Text>().text = "+1 Lootbox!";
 						break;
 					default:
 						break;
@@ -124,18 +124,19 @@ public class ThrowingLine : MonoBehaviour
 
 		int j = 0;
 
-		do
+		foreach (Sprite Fish in FishAvailable)
 		{
-			if(AllRates < FishRate)
-			{
+			if (FishRate < FishRates[j])
 				return j;
-			}
 			else
 			{
-				AllRates -= FishRates[j];
+				FishRate -= FishRates[j];
 				j++;
 			}
-		} while (true);
+		}
+
+		Debug.Log(j);
+		return -1;
 	}
 
 	public void DisplayCaughtFish(int FishIndex)
