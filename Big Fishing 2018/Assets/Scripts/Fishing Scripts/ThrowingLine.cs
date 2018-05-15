@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Script for throwing the fishing line and the objects able to be caught from fishing
@@ -9,11 +10,18 @@ using UnityEngine;
 public class ThrowingLine : MonoBehaviour
 {
     public GameObject FishingLine;
-    public List<GameObject> FishAvailable;
+    public List<Sprite> FishAvailable;
     public CatchingScript FishStatus;
 	public ResourceHolder ResourceHolder;
+	public List<int> FishCatchRates = new List<int>();
 
-	private Dictionary<int, GameObject> _FishDictionary;
+
+	public GameObject FishCaughtHUD;
+	public Image FishCaughtHUDImage;
+
+	private Dictionary<int, int> FishRates = new Dictionary<int, int>();
+
+	private Dictionary<int, Sprite> _FishDictionary = new Dictionary<int, Sprite>();
 
     private void Awake()
     {
@@ -34,6 +42,11 @@ public class ThrowingLine : MonoBehaviour
         {
             Debug.Log("Failed to load FishStatus");
         }
+
+		for(int i = 0; i < FishAvailable.Count; i++)
+		{
+			FishRates.Add(i, FishCatchRates[i]);
+		}
     }
 
     public void CastFishingLine()
@@ -54,12 +67,36 @@ public class ThrowingLine : MonoBehaviour
         {
             if (_FishDictionary != null)
             {
-				if(ResourceHolder != null)
+				int FishCaught = ReturnCaughtFish();
+
+				switch (FishCaught)
 				{
-					ResourceHolder.ModifyLootBoxes(1);
-					ResourceHolder.ModifyEXP(100);
+					case 0:
+						ResourceHolder.ModifyEXP(250);
+						FishCaughtHUD.GetComponentInChildren<Text>().text = "+250 EXP!";
+						break;
+					case 1:
+						ResourceHolder.ModifyEXP(100);
+						FishCaughtHUD.GetComponentInChildren<Text>().text = "+100 EXP!";
+						break;
+					case 2:
+						ResourceHolder.ModifyEXP(5000);
+						FishCaughtHUD.GetComponentInChildren<Text>().text = "+5000 EXP!";
+						break;
+					case 3:
+						ResourceHolder.ModifyLootBoxes(1);
+						FishCaughtHUD.GetComponentInChildren<Text>().text = "1 Lootbox!";
+						break;
+					default:
+						break;
 				}
-            }
+
+				DisplayCaughtFish(FishCaught);
+
+				if (!FishCaughtHUD.activeSelf)
+					FishCaughtHUD.SetActive(true);
+
+			}
             else
             {
 				Debug.Log("No fish currently in dictionary to be caught");
@@ -68,4 +105,41 @@ public class ThrowingLine : MonoBehaviour
 
         FishingLine.SetActive(false);
     }
+
+	public int ReturnCaughtFish()
+	{
+		int AllRates = 0;
+
+		for (int i = 0; i < FishRates.Count; i++)
+		{
+			AllRates += FishRates[i];
+		}
+
+		if (AllRates == 0)
+			return -1;
+
+		Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
+
+		int FishRate =  Random.Range(0, AllRates);
+
+		int j = 0;
+
+		do
+		{
+			if(AllRates < FishRate)
+			{
+				return j;
+			}
+			else
+			{
+				AllRates -= FishRates[j];
+				j++;
+			}
+		} while (true);
+	}
+
+	public void DisplayCaughtFish(int FishIndex)
+	{
+		FishCaughtHUDImage.sprite = _FishDictionary[FishIndex];
+	}
 }
