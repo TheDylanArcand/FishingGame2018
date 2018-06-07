@@ -17,7 +17,6 @@ public class CatchingScript : MonoBehaviour {
     public float MaximumWait = 4.0f;
     public float SpawnPositionY = 0.15f;
     public float SpawnPositionBorder = 0.9f;
-    public AudioSource AudioSource;
     public GameObject WaterPlane;
     public GameObject FishHookedText;
 
@@ -38,11 +37,6 @@ public class CatchingScript : MonoBehaviour {
                 _SpawnLocation = MeshRenderer.bounds.extents;
             }
         }
-
-        if (AudioSource != null)
-        {
-            AudioSource = GetComponent<AudioSource>();
-		}
 	}
 
 	//Use of OnEnable and OnDisable to trigger objects to start
@@ -89,12 +83,6 @@ public class CatchingScript : MonoBehaviour {
 		//The player is able to catch a fish for (_TimeUntilBite) Seconds
 		if (Time.time > _TimeUntilBite && Time.time - _TimeUntilBite < FishingBuffer)
         {
-            if (AudioSource != null)
-            {
-                AudioSource.Play();
-            }
-
-
             if (!FishCatchable)
             {
                 FishCatchable = true;

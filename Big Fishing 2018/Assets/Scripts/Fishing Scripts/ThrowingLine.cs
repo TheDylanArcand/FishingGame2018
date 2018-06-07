@@ -15,7 +15,7 @@ public class ThrowingLine : MonoBehaviour
 	public ResourceHolder ResourceHolder;
 	public List<int> FishCatchRates = new List<int>();
 
-
+	public AudioSource FishCaughtSound;
 	public GameObject FishCaughtHUD;
 	public Image FishCaughtHUDImage;
 
@@ -47,7 +47,12 @@ public class ThrowingLine : MonoBehaviour
 		{
 			FishRates.Add(i, FishCatchRates[i]);
 		}
-    }
+
+		if (FishCaughtSound != null)
+		{
+			FishCaughtSound = GetComponent<AudioSource>();
+		}
+	}
 
 	public void CastFishingLine()
     {
@@ -65,6 +70,9 @@ public class ThrowingLine : MonoBehaviour
     {
         if (FishStatus.FishCatchable == true)
         {
+			if (FishCaughtSound != null)
+				FishCaughtSound.Play();
+
             if (_FishDictionary != null)
             {
 				int FishCaught = ReturnCaughtFish();
