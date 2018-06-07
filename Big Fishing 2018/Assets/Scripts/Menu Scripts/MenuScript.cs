@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+//using UnityEditor;
 
 public class MenuScript : MonoBehaviour {
 
@@ -12,8 +12,8 @@ public class MenuScript : MonoBehaviour {
 
 	private void Awake()
 	{
-		if (VersionNumber != null)
-			VersionNumber.text = "Version: " + PlayerSettings.bundleVersion;
+		//if (VersionNumber != null)
+		//	VersionNumber.text = "Version: " + PlayerSettings.bundleVersion;
 	}
 
 	public void GotoMainMenu()
@@ -38,4 +38,9 @@ public class MenuScript : MonoBehaviour {
     {
         SceneManager.LoadScene(ConstSceneScript.SCENE_SKILLTREE);
     }
+
+	public void CloseProgram()
+	{
+		Application.Quit();
+	}
 }
