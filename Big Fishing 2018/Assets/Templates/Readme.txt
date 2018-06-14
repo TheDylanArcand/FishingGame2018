@@ -1,1 +1,0 @@
-This is a fishing toolkit for games that lack everything but the game itself, so pretty useless

@@ -13,9 +13,9 @@ public class CatchingScript : MonoBehaviour {
 
 	//Buffer is used in seconds, the Wait variables are minutes
     public float FishingBuffer = 10f;
-    public float MinimumWait = 0.5f;
-    public float MaximumWait = 4.0f;
-    public float SpawnPositionY = 0.15f;
+	public float MinimumWait = UserStatsScript.Instance.Fishing_MinimumWait;
+	public float MaximumWait = UserStatsScript.Instance.Fishing_MaximumWait;
+	public float SpawnPositionY = 0.15f;
     public float SpawnPositionBorder = 0.9f;
     public GameObject WaterPlane;
     public GameObject FishHookedText;

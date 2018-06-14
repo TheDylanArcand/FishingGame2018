@@ -10,24 +10,21 @@ using UnityEngine.UI;
 
 public class LootBoxValueChecker : MonoBehaviour
 {
-	public ResourceHolder RS;
 	public GameObject LootBoxButton;
 
 	private void OnEnable()
 	{
-		if(RS != null)
-		{
 			if(LootBoxButton != null)
 			{
-				if(RS.GetLootBoxCount() < 1)
+				if(UserStatsScript.Instance.LootBoxCount < 1)
 				{
-					LootBoxButton.GetComponent<Button>().interactable = false; ;
+					LootBoxButton.GetComponent<Button>().interactable = false;
 				}
 				else
 				{
-					LootBoxButton.GetComponent<Button>().interactable = true; ;
+					LootBoxButton.GetComponent<Button>().interactable = true;
 				}
 			}
-		}
+		
 	}
 }

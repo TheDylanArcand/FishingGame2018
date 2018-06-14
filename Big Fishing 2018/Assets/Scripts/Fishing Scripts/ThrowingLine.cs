@@ -12,7 +12,6 @@ public class ThrowingLine : MonoBehaviour
     public GameObject FishingLine;
     public List<Sprite> FishAvailable;
     public CatchingScript FishStatus;
-	public ResourceHolder ResourceHolder;
 	public List<int> FishCatchRates = new List<int>();
 
 	public AudioSource FishCaughtSound;
@@ -80,19 +79,19 @@ public class ThrowingLine : MonoBehaviour
 				switch (FishCaught)
 				{
 					case 0:
-						ResourceHolder.ModifyEXP(250);
+						UserStatsScript.Instance.EXP += 250;
 						FishCaughtHUD.GetComponentInChildren<Text>().text = "+250 EXP!";
 						break;
 					case 1:
-						ResourceHolder.ModifyEXP(100);
+						UserStatsScript.Instance.EXP += 100;
 						FishCaughtHUD.GetComponentInChildren<Text>().text = "+100 EXP!";
 						break;
 					case 2:
-						ResourceHolder.ModifyEXP(5000);
+						UserStatsScript.Instance.EXP += 5000;
 						FishCaughtHUD.GetComponentInChildren<Text>().text = "+5000 EXP!";
 						break;
 					case 3:
-						ResourceHolder.ModifyLootBoxes(1);
+						UserStatsScript.Instance.LootBoxCount++;
 						FishCaughtHUD.GetComponentInChildren<Text>().text = "+1 Lootbox!";
 						break;
 					default:

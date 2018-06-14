@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///		Script for simulating a fishing line
+/// </summary>
+
 public class FishingRodScript : MonoBehaviour
 {
 	public Transform Bobber;

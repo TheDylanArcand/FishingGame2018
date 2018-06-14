@@ -6,41 +6,15 @@ using UnityEngine.UI;
 public class LootboxHandler : MonoBehaviour
 {
     public GameObject LootBox;
-    public List<GameObject> LootItem;
+    public List<Sprite> LootItem;
     public Text ItemText;
+	public Image ItemImage;
 	public ItemScript CreatedLoot;
 	public InventoryScript ItemTransferer;
-
 	public Text LootboxText;
-	public ResourceHolder ResourceHolder;
-
-	private string[] _ItemPrefix =
-    {
-        "Fast",
-        "Strong",
-        "Beefy",
-        "Searing",
-        "Crystal",
-        "Limestone",
-        "Spooky",
-        "Scary",
-        "Skeleton"
-    };
-
-    private string[] _ItemSuffix =
-    {
-        "Insanity",
-        "Flame",
-        "Health",
-        "Resistance",
-        "Life",
-        "Destiny",
-        "Pain",
-        "Nature"
-    };
     
     private int _LootIndex;
-    private Dictionary<int, GameObject> _LootItemDictionary = new Dictionary<int, GameObject>();
+    private Dictionary<int, Sprite> _LootItemDictionary = new Dictionary<int, Sprite>();
 
 	void Awake ()
     {
@@ -54,30 +28,26 @@ public class LootboxHandler : MonoBehaviour
             }
         }
 
-        if (_LootItemDictionary != null)
-        {
-            Debug.Log("There are things in LootItemDictionary");
-        }
-
-		LootboxText.text = "Lootboxes: " + ResourceHolder.GetLootBoxCount();
+		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
 	}
 	
     public void OpenLootBox()
     {
         LootBox.SetActive(false);
 
-        _LootIndex = GameManager.Instance.RandomIndex(_LootItemDictionary);
+        _LootIndex = RandomIndex(_LootItemDictionary);
 
-        _LootItemDictionary[_LootIndex].SetActive(true);
+        ItemImage.sprite = _LootItemDictionary[_LootIndex];
 
+		ItemImage.gameObject.SetActive(true);
         ItemText.gameObject.SetActive(true);
 
-		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex].GetComponent<Image>().sprite;
+		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex];
 		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
 		ItemTransferer.AddItem(CreatedLoot);
 
-		ResourceHolder.ModifyLootBoxes(-1);
-		LootboxText.text = "Lootboxes: " + ResourceHolder.GetLootBoxCount();
+		UserStatsScript.Instance.LootBoxCount--;
+		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
 
 	}
 
@@ -85,16 +55,16 @@ public class LootboxHandler : MonoBehaviour
     {
         LootBox.SetActive(true);
 
-        _LootItemDictionary[_LootIndex].SetActive(false);
+		ItemImage.gameObject.SetActive(false);
 
         ItemText.gameObject.SetActive(false);
     }
 
     string GenerateName(int index)
     {
-        string itemType = "null";
-        string itemPrefix = _ItemPrefix[Random.Range(0, _ItemPrefix.Length)];
-        string itemSuffix = _ItemSuffix[Random.Range(0, _ItemSuffix.Length)];
+        string itemType = null;
+        string itemPrefix = ItemInformation.ItemPrefix[Random.Range(0, ItemInformation.ItemPrefix.Length)];
+        string itemSuffix = ItemInformation.ItemSuffix[Random.Range(0, ItemInformation.ItemSuffix.Length)];
 
         switch (index)
         {
@@ -123,5 +93,12 @@ public class LootboxHandler : MonoBehaviour
 
         return (itemPrefix + " " + itemType + " of " + itemSuffix).ToString();
     }
-    
+
+	public int RandomIndex(Dictionary<int, Sprite> Dict)
+	{
+		Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
+
+		return Random.Range(0, Dict.Count);
+	}
+
 }

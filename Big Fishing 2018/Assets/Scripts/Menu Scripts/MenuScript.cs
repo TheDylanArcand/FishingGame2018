@@ -1,43 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //using UnityEditor;
 
-public class MenuScript : MonoBehaviour {
-
-	public Toggle GoodFishingButton;
-	public Text VersionNumber;
-
-	private void Awake()
+public class MenuScript : MonoBehaviour
+{
+	public void GotoMainMenu()
 	{
-		//if (VersionNumber != null)
-		//	VersionNumber.text = "Version: " + PlayerSettings.bundleVersion;
+		SceneManager.LoadScene(ConstSceneScript.SCENE_MAINMENU, LoadSceneMode.Single);
 	}
 
-	public void GotoMainMenu()
-    {
-        SceneManager.LoadScene(ConstSceneScript.SCENE_MAINMENU);
-    }
+	public void GotoLootBox()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_LOOTBOX, LoadSceneMode.Single);
+	}
 
-    public void GotoLootBox()
-    {
-        SceneManager.LoadScene(ConstSceneScript.SCENE_LOOTBOX);
-    }
+	public void GotoFishing()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_FISHING, LoadSceneMode.Single);
+	}
 
-    public void GotoFishing()
-    {
-		if (GoodFishingButton.isOn)
-			SceneManager.LoadScene(ConstSceneScript.SCENE_FISHING_BETTER);
-		else
-			SceneManager.LoadScene(ConstSceneScript.SCENE_FISHING);
-    }
-
-    public void GotoSkillTree()
-    {
-        SceneManager.LoadScene(ConstSceneScript.SCENE_SKILLTREE);
-    }
+	public void GotoSkillTree()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_SKILLTREE, LoadSceneMode.Single);
+	}
 
 	public void CloseProgram()
 	{
