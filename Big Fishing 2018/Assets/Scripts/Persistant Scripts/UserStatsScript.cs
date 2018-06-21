@@ -15,7 +15,15 @@ public class UserStatsScript : MonoBehaviour
 
 	private void Awake()
 	{
-		Instance = this;
+
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
 
 		if(!_Created)
 		{

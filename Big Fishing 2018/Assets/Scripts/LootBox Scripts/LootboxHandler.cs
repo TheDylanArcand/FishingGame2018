@@ -9,9 +9,9 @@ public class LootboxHandler : MonoBehaviour
     public List<Sprite> LootItem;
     public Text ItemText;
 	public Image ItemImage;
-	public ItemScript CreatedLoot;
 	public InventoryScript ItemTransferer;
 	public Text LootboxText;
+	public string ItemTag;
     
     private int _LootIndex;
     private Dictionary<int, Sprite> _LootItemDictionary = new Dictionary<int, Sprite>();
@@ -38,13 +38,12 @@ public class LootboxHandler : MonoBehaviour
         _LootIndex = RandomIndex(_LootItemDictionary);
 
         ItemImage.sprite = _LootItemDictionary[_LootIndex];
+		ItemText.text = GenerateName(_LootIndex);
 
 		ItemImage.gameObject.SetActive(true);
         ItemText.gameObject.SetActive(true);
 
-		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex];
-		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
-		ItemTransferer.AddItem(CreatedLoot);
+		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag);
 
 		UserStatsScript.Instance.LootBoxCount--;
 		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
@@ -62,36 +61,35 @@ public class LootboxHandler : MonoBehaviour
 
     string GenerateName(int index)
     {
-        string itemType = null;
         string itemPrefix = ItemInformation.ItemPrefix[Random.Range(0, ItemInformation.ItemPrefix.Length)];
         string itemSuffix = ItemInformation.ItemSuffix[Random.Range(0, ItemInformation.ItemSuffix.Length)];
 
         switch (index)
         {
             case 0:
-                CreatedLoot.SlotTag = itemType = "Chestpiece";
+                ItemTag = "Chestpiece";
                 break;
             case 1:
-				CreatedLoot.SlotTag = itemType = "Gloves";
+				ItemTag = "Gloves";
                 break;
             case 2:
-				CreatedLoot.SlotTag = itemType = "Helm";
+				ItemTag = "Helm";
                 break;
             case 3:
-				CreatedLoot.SlotTag = itemType = "Pants";
+				ItemTag = "Pants";
                 break;
             case 4:
-				CreatedLoot.SlotTag = itemType = "Boots";
+				ItemTag = "Boots";
                 break;
             case 5:
-				CreatedLoot.SlotTag = itemType = "Weapon";
+				ItemTag = "Weapon";
                 break;
             default:
-				CreatedLoot.SlotTag = itemType = "Index larger than switch";
+				ItemTag = "Index larger than switch";
                 break;
         }
 
-        return (itemPrefix + " " + itemType + " of " + itemSuffix).ToString();
+        return (itemPrefix + " " + ItemTag + " of " + itemSuffix).ToString();
     }
 
 	public int RandomIndex(Dictionary<int, Sprite> Dict)

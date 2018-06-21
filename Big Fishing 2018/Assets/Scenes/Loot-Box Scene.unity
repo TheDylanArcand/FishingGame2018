@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4396577, g: 0.4880566, b: 0.5682807, a: 1}
+  m_IndirectSpecularColor: {r: 0.4396577, g: 0.4880566, b: 0.56828064, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &7693528
 GameObject:
@@ -120,7 +125,7 @@ GameObject:
   - component: {fileID: 7693531}
   - component: {fileID: 7693530}
   m_Layer: 5
-  m_Name: Item3
+  m_Name: Item_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,12 +189,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7693528}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -263,7 +268,7 @@ GameObject:
   - component: {fileID: 41474946}
   - component: {fileID: 41474945}
   m_Layer: 5
-  m_Name: Item1
+  m_Name: Item_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +332,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 41474943}
@@ -406,7 +411,7 @@ GameObject:
   - component: {fileID: 45423045}
   - component: {fileID: 45423044}
   m_Layer: 5
-  m_Name: Item5
+  m_Name: Item_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,12 +475,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 45423042}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -549,7 +554,7 @@ GameObject:
   - component: {fileID: 51877377}
   - component: {fileID: 51877376}
   m_Layer: 5
-  m_Name: Item7
+  m_Name: Item_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,12 +618,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 51877374}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -723,7 +728,7 @@ GameObject:
   - component: {fileID: 114611242}
   - component: {fileID: 114611241}
   m_Layer: 5
-  m_Name: Item20
+  m_Name: Item_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +792,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 114611239}
@@ -854,6 +859,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 114611239}
+--- !u!1 &176224667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 176224668}
+  - component: {fileID: 176224670}
+  - component: {fileID: 176224669}
+  m_Layer: 5
+  m_Name: ItemTag
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &176224668
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 176224667}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1784396578}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.33083287, y: 0.80366224}
+  m_AnchorMax: {x: 0.5444036, y: 0.85158086}
+  m_AnchoredPosition: {x: 0.8100586, y: 0}
+  m_SizeDelta: {x: -2.1899414, y: -1.3200002}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &176224669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 176224667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 128
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: ItemName
+--- !u!222 &176224670
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 176224667}
 --- !u!1 &195639422
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +1007,51 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 195639422}
+--- !u!1 &210697224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 210697226}
+  - component: {fileID: 210697225}
+  m_Layer: 0
+  m_Name: StatsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &210697225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210697224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6384ddd6663f1f64685d0498b8d542e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerRank: 100
+  EXP: 0
+  LootBoxCount: 36
+  Fishing_MinimumWait: 0.5
+  Fishing_MaximumWait: 4
+--- !u!4 &210697226
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210697224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274509181
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +1082,7 @@ RectTransform:
   m_Children:
   - {fileID: 195639423}
   m_Father: {fileID: 1784396578}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7208329, y: 0.026668891}
   m_AnchorMax: {x: 0.9866658, y: 0.12333779}
@@ -1019,9 +1143,8 @@ MonoBehaviour:
         m_MethodName: RemoveItem
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 03849da4adadad0419bf9bc22b2405d8,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ItemScript, Assembly-CSharp
+          m_ObjectArgument: {fileID: 1460600953}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1040,10 +1163,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1489017556}
         m_MethodName: InitiateSort
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1489017555}
-          m_ObjectArgumentAssemblyTypeName: InventoryScript, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1541,11 +1664,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &362757137
 Transform:
   m_ObjectHideFlags: 0
@@ -1651,7 +1774,7 @@ GameObject:
   - component: {fileID: 408654090}
   - component: {fileID: 408654089}
   m_Layer: 5
-  m_Name: Item23
+  m_Name: Item_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1715,7 +1838,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 408654087}
@@ -1916,7 +2039,7 @@ GameObject:
   - component: {fileID: 453648224}
   - component: {fileID: 453648223}
   m_Layer: 5
-  m_Name: Item33
+  m_Name: Item_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1980,7 +2103,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 453648221}
@@ -2079,8 +2202,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 412, y: 207}
-  m_SizeDelta: {x: 850, y: 84}
+  m_AnchoredPosition: {x: 435, y: 207}
+  m_SizeDelta: {x: 950, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482975796
 MonoBehaviour:
@@ -2103,18 +2226,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 128
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Item text
 --- !u!222 &482975797
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2133,7 +2256,7 @@ GameObject:
   - component: {fileID: 516022660}
   - component: {fileID: 516022659}
   m_Layer: 5
-  m_Name: Item16
+  m_Name: Item_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2197,7 +2320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 516022657}
@@ -2632,7 +2755,7 @@ RectTransform:
   m_Children:
   - {fileID: 1694082194}
   m_Father: {fileID: 1784396578}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.013331447, y: 0.026668891}
   m_AnchorMax: {x: 0.27916715, y: 0.12333779}
@@ -2751,7 +2874,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &638675385
 MeshRenderer:
@@ -2762,6 +2885,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2777,6 +2901,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2829,7 +2954,7 @@ GameObject:
   - component: {fileID: 663343816}
   - component: {fileID: 663343815}
   m_Layer: 5
-  m_Name: Item30
+  m_Name: Item_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2893,7 +3018,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 663343813}
@@ -2972,7 +3097,7 @@ GameObject:
   - component: {fileID: 682208420}
   - component: {fileID: 682208419}
   m_Layer: 5
-  m_Name: Item2
+  m_Name: Item_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3036,12 +3161,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 682208417}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3203,10 +3328,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1489017556}
         m_MethodName: InitiateSort
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1489017555}
-          m_ObjectArgumentAssemblyTypeName: InventoryScript, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3270,7 +3395,7 @@ GameObject:
   - component: {fileID: 761951100}
   - component: {fileID: 761951099}
   m_Layer: 5
-  m_Name: Item27
+  m_Name: Item_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3334,7 +3459,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 761951097}
@@ -3503,7 +3628,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1784396578}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01916714, y: 0.37667558}
   m_AnchorMax: {x: 0.31333432, y: 0.9616689}
@@ -3555,7 +3680,7 @@ GameObject:
   - component: {fileID: 876616396}
   - component: {fileID: 876616395}
   m_Layer: 5
-  m_Name: Item32
+  m_Name: Item_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3619,7 +3744,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 876616393}
@@ -3698,7 +3823,7 @@ GameObject:
   - component: {fileID: 907115879}
   - component: {fileID: 907115878}
   m_Layer: 5
-  m_Name: Item8
+  m_Name: Item_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3762,12 +3887,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 907115876}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3841,7 +3966,7 @@ GameObject:
   - component: {fileID: 947444287}
   - component: {fileID: 947444286}
   m_Layer: 5
-  m_Name: Item22
+  m_Name: Item_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3905,7 +4030,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 947444284}
@@ -4087,7 +4212,7 @@ GameObject:
   - component: {fileID: 983680896}
   - component: {fileID: 983680895}
   m_Layer: 5
-  m_Name: ItemText
+  m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4106,10 +4231,10 @@ RectTransform:
   m_Father: {fileID: 1784396578}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.33083287, y: 0.75864357}
-  m_AnchorMax: {x: 0.9568722, y: 0.9416756}
-  m_AnchoredPosition: {x: -0.19000244, y: 0}
-  m_SizeDelta: {x: -3.1899967, y: -1}
+  m_AnchorMin: {x: 0.33083287, y: 0.84876364}
+  m_AnchorMax: {x: 0.95600003, y: 0.9416756}
+  m_AnchoredPosition: {x: 0.80999756, y: 0}
+  m_SizeDelta: {x: -2.1899967, y: 0.40000153}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &983680895
 MonoBehaviour:
@@ -4143,7 +4268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: ItemName
 --- !u!222 &983680896
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4162,7 +4287,7 @@ GameObject:
   - component: {fileID: 1003648222}
   - component: {fileID: 1003648221}
   m_Layer: 5
-  m_Name: Item6
+  m_Name: Item_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4226,12 +4351,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1003648219}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4305,7 +4430,7 @@ GameObject:
   - component: {fileID: 1007957280}
   - component: {fileID: 1007957279}
   m_Layer: 5
-  m_Name: Item18
+  m_Name: Item_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4369,7 +4494,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1007957277}
@@ -4448,7 +4573,7 @@ GameObject:
   - component: {fileID: 1049915291}
   - component: {fileID: 1049915290}
   m_Layer: 5
-  m_Name: Item17
+  m_Name: Item_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4512,7 +4637,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1049915288}
@@ -4591,7 +4716,7 @@ GameObject:
   - component: {fileID: 1054344410}
   - component: {fileID: 1054344409}
   m_Layer: 5
-  m_Name: Item25
+  m_Name: Item_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4655,7 +4780,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1054344407}
@@ -4734,7 +4859,7 @@ GameObject:
   - component: {fileID: 1064484528}
   - component: {fileID: 1064484527}
   m_Layer: 5
-  m_Name: Item4
+  m_Name: Item_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4798,12 +4923,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1064484525}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4877,7 +5002,7 @@ GameObject:
   - component: {fileID: 1090861681}
   - component: {fileID: 1090861680}
   m_Layer: 5
-  m_Name: Item34
+  m_Name: Item_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4941,7 +5066,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1090861678}
@@ -5020,7 +5145,7 @@ GameObject:
   - component: {fileID: 1098600578}
   - component: {fileID: 1098600577}
   m_Layer: 5
-  m_Name: Item13
+  m_Name: Item_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5084,12 +5209,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1098600575}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5163,7 +5288,7 @@ GameObject:
   - component: {fileID: 1102013743}
   - component: {fileID: 1102013742}
   m_Layer: 5
-  m_Name: Item15
+  m_Name: Item_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5227,7 +5352,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1102013740}
@@ -5306,7 +5431,7 @@ GameObject:
   - component: {fileID: 1107149577}
   - component: {fileID: 1107149576}
   m_Layer: 5
-  m_Name: Item36
+  m_Name: Item_36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5370,7 +5495,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1107149574}
@@ -5449,7 +5574,7 @@ GameObject:
   - component: {fileID: 1111735894}
   - component: {fileID: 1111735893}
   m_Layer: 5
-  m_Name: Item19
+  m_Name: Item_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5513,7 +5638,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1111735891}
@@ -5656,7 +5781,7 @@ GameObject:
   - component: {fileID: 1151108078}
   - component: {fileID: 1151108077}
   m_Layer: 5
-  m_Name: Item26
+  m_Name: Item_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5720,7 +5845,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1151108075}
@@ -5867,7 +5992,7 @@ GameObject:
   - component: {fileID: 1189069918}
   - component: {fileID: 1189069917}
   m_Layer: 5
-  m_Name: Item10
+  m_Name: Item_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5931,12 +6056,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1189069915}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6010,7 +6135,7 @@ GameObject:
   - component: {fileID: 1190698843}
   - component: {fileID: 1190698842}
   m_Layer: 5
-  m_Name: Item21
+  m_Name: Item_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6074,7 +6199,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1190698840}
@@ -6227,7 +6352,7 @@ GameObject:
   - component: {fileID: 1337411354}
   - component: {fileID: 1337411353}
   m_Layer: 5
-  m_Name: Item31
+  m_Name: Item_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6291,7 +6416,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1337411351}
@@ -6370,7 +6495,7 @@ GameObject:
   - component: {fileID: 1344760891}
   - component: {fileID: 1344760890}
   m_Layer: 5
-  m_Name: Item12
+  m_Name: Item_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6434,12 +6559,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1344760888}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6549,20 +6674,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -6580,6 +6691,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 70.347, y: -72.868004, z: -48.017002}
+--- !u!1 &1460600952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1460600955}
+  - component: {fileID: 1460600954}
+  - component: {fileID: 1460600953}
+  m_Layer: 5
+  m_Name: ItemIndex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1460600953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460600952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 128
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: //
+--- !u!222 &1460600954
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460600952}
+--- !u!224 &1460600955
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460600952}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1784396578}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.33083287, y: 0.84876364}
+  m_AnchorMax: {x: 0.95600003, y: 0.9416756}
+  m_AnchoredPosition: {x: 0.8100586, y: 0}
+  m_SizeDelta: {x: -2.1899414, y: 0.40000153}
+  m_Pivot: {x: 1, y: 1}
 --- !u!1 &1477445779
 GameObject:
   m_ObjectHideFlags: 0
@@ -6592,7 +6777,7 @@ GameObject:
   - component: {fileID: 1477445782}
   - component: {fileID: 1477445781}
   m_Layer: 5
-  m_Name: Item28
+  m_Name: Item_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6656,7 +6841,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1477445779}
@@ -6776,117 +6961,151 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a405c002b778d4984bc4e32aa99b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ItemTags:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  Inventory:
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
+  - ItemSprite: {fileID: 0}
+    ItemName: 
+    ItemTag: 
+    ItemIndex: 0
   ItemSlots:
   - {fileID: 41474943}
   - {fileID: 682208417}
@@ -6924,8 +7143,10 @@ MonoBehaviour:
   - {fileID: 1090861678}
   - {fileID: 2104549249}
   - {fileID: 1107149574}
-  EnlargedImage: {fileID: 783087497}
-  EnlargedText: {fileID: 983680895}
+  EnlargedImage: {fileID: 783087499}
+  EnlargedName: {fileID: 983680895}
+  EnlargedTag: {fileID: 176224669}
+  EnlargedIndex: {fileID: 1460600953}
 --- !u!114 &1489017556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7011,7 +7232,7 @@ GameObject:
   - component: {fileID: 1552813276}
   - component: {fileID: 1552813275}
   m_Layer: 5
-  m_Name: Item14
+  m_Name: Item_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7075,7 +7296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1552813273}
@@ -7154,7 +7375,7 @@ GameObject:
   - component: {fileID: 1564249178}
   - component: {fileID: 1564249177}
   m_Layer: 5
-  m_Name: Item9
+  m_Name: Item_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7218,12 +7439,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1564249175}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7338,9 +7559,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 45d9c1eb7f439be4eaa92a4325da7b7e, type: 3}
   ItemText: {fileID: 482975796}
   ItemImage: {fileID: 1178909798}
-  CreatedLoot: {fileID: 11400000, guid: 03849da4adadad0419bf9bc22b2405d8, type: 2}
   ItemTransferer: {fileID: 1489017555}
   LootboxText: {fileID: 341600498}
+  ItemTag: 
 --- !u!198 &1642275169
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -7350,6 +7571,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   simulationSpeed: 1
+  stopAction: 0
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -7400,7 +7622,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 982493215
+  randomSeed: -732804089
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7853,11 +8075,11 @@ ParticleSystem:
     m_Rotation: {x: 30, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
+    m_MeshMaterialIndex: 0
+    m_MeshNormalOffset: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
-    m_MeshMaterialIndex: 0
-    m_MeshNormalOffset: 0
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
@@ -8579,6 +8801,47 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    speedModifier:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     inWorldSpace: 0
   InheritVelocityModule:
     enabled: 0
@@ -8922,7 +9185,50 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxis: 0
     inWorldSpace: 0
+    multiplyDragByParticleSize: 1
+    multiplyDragByParticleVelocity: 1
     dampen: 1
+    drag:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
   NoiseModule:
     enabled: 0
     strength:
@@ -9830,7 +10136,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     subEmitters:
-    - emitter: {fileID: 0}
+    - serializedVersion: 2
+      emitter: {fileID: 0}
       type: 0
       properties: 0
   LightsModule:
@@ -9926,6 +10233,7 @@ ParticleSystem:
     maxLights: 20
   TrailModule:
     enabled: 0
+    mode: 0
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -9970,12 +10278,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    ribbonCount: 1
     worldSpace: 0
     dieWithParticles: 1
     sizeAffectsWidth: 1
     sizeAffectsLifetime: 0
     inheritParticleColor: 1
     generateLightingData: 0
+    splitSubEmitterRibbons: 0
     colorOverLifetime:
       serializedVersion: 2
       minMaxState: 0
@@ -10210,6 +10520,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
+    colorLabel0: Color
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -10251,6 +10562,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel0_0: X
     vector0_1:
       serializedVersion: 2
       minMaxState: 0
@@ -10292,6 +10604,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel0_1: Y
     vector0_2:
       serializedVersion: 2
       minMaxState: 0
@@ -10333,6 +10646,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel0_2: Z
     vector0_3:
       serializedVersion: 2
       minMaxState: 0
@@ -10374,6 +10688,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel0_3: W
     mode1: 0
     vectorComponentCount1: 4
     color1:
@@ -10439,6 +10754,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
+    colorLabel1: Color
     vector1_0:
       serializedVersion: 2
       minMaxState: 0
@@ -10480,6 +10796,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel1_0: X
     vector1_1:
       serializedVersion: 2
       minMaxState: 0
@@ -10521,6 +10838,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel1_1: Y
     vector1_2:
       serializedVersion: 2
       minMaxState: 0
@@ -10562,6 +10880,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel1_2: Z
     vector1_3:
       serializedVersion: 2
       minMaxState: 0
@@ -10603,6 +10922,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+    vectorLabel1_3: W
 --- !u!199 &1642275170
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -10613,6 +10933,7 @@ ParticleSystemRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -10629,6 +10950,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10741,7 +11063,7 @@ GameObject:
   - component: {fileID: 1716836114}
   - component: {fileID: 1716836113}
   m_Layer: 5
-  m_Name: Item24
+  m_Name: Item_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10805,7 +11127,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1716836111}
@@ -10934,7 +11256,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 983680894}
+  - {fileID: 176224668}
   - {fileID: 783087498}
+  - {fileID: 1460600955}
   - {fileID: 605659558}
   - {fileID: 274509182}
   m_Father: {fileID: 1771684255}
@@ -10990,7 +11314,7 @@ GameObject:
   - component: {fileID: 1788601624}
   - component: {fileID: 1788601623}
   m_Layer: 5
-  m_Name: Item11
+  m_Name: Item_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11054,12 +11378,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1788601621}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11133,7 +11457,7 @@ GameObject:
   - component: {fileID: 1823654305}
   - component: {fileID: 1823654304}
   m_Layer: 5
-  m_Name: Item29
+  m_Name: Item_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11197,7 +11521,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1823654302}
@@ -11595,7 +11919,7 @@ GameObject:
   - component: {fileID: 2104549252}
   - component: {fileID: 2104549251}
   m_Layer: 5
-  m_Name: Item35
+  m_Name: Item_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11659,7 +11983,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489017555}
-        m_MethodName: EnlargeItem
+        m_MethodName: EnlargeItem_Index
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2104549249}
