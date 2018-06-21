@@ -8,10 +8,10 @@ public class ItemSortingAlgorithm : MonoBehaviour
 
 	public void InitiateSort()
 	{
-		Sort(ref InventoryScript.InventoryInstance.Inventory);
+		Sort();
 	}
 	
-	private void Sort(ref InventoryScript.ItemStruct[] Items)
+	private void Sort()
 	{
 		InventoryScript.ItemStruct[] ChestplateArray =	new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
 		InventoryScript.ItemStruct[] GlovesArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
@@ -27,7 +27,7 @@ public class ItemSortingAlgorithm : MonoBehaviour
 		int WeaponIndex = 0;
 		int TotalIndex = 0;
 	
-		foreach (InventoryScript.ItemStruct item in Items)
+		foreach (InventoryScript.ItemStruct item in InventoryScript.InventoryInstance.Inventory)
 		{
 			switch (item.ItemTag)
 			{
@@ -52,26 +52,30 @@ public class ItemSortingAlgorithm : MonoBehaviour
 				default:
 					break;
 			}
-			item.CleanItem();
+		}
+
+		for (int i = 0; i < InventoryScript.InventoryInstance.Inventory.Length; i++)
+		{
+			InventoryScript.InventoryInstance.Inventory[i].CleanItem();
 		}
 	
 		if (ChestplateIndex > 0)
-			TotalIndex = AddToOldList(Items, ChestplateArray, TotalIndex, ChestplateIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, ChestplateArray	, TotalIndex, ChestplateIndex);
 	
 		if (GlovesIndex		> 0)
-			TotalIndex = AddToOldList(Items, GlovesArray	, TotalIndex, GlovesIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, GlovesArray		, TotalIndex, GlovesIndex);
 	
 		if (HelmIndex		> 0)
-			TotalIndex = AddToOldList(Items, HelmArray		, TotalIndex, HelmIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, HelmArray		, TotalIndex, HelmIndex);
 	
 		if (PantsIndex		> 0)
-			TotalIndex = AddToOldList(Items, PantsArray		, TotalIndex, PantsIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, PantsArray		, TotalIndex, PantsIndex);
 	
 		if (BootsIndex		> 0)
-			TotalIndex = AddToOldList(Items, BootsArray		, TotalIndex, BootsIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, BootsArray		, TotalIndex, BootsIndex);
 	
 		if (WeaponIndex		> 0)
-			TotalIndex = AddToOldList(Items, WeaponArray	, TotalIndex, WeaponIndex);
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, WeaponArray		, TotalIndex, WeaponIndex);
 	
 	}
 
