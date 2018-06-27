@@ -13,8 +13,8 @@ public class CatchingScript : MonoBehaviour {
 
 	//Buffer is used in seconds, the Wait variables are minutes
     public float FishingBuffer = 10f;
-	public float MinimumWait = UserStatsScript.Instance.Fishing_MinimumWait;
-	public float MaximumWait = UserStatsScript.Instance.Fishing_MaximumWait;
+	public float MinimumWait = 0.0f;
+	public float MaximumWait = 0.0f;
 	public float SpawnPositionY = 0.15f;
     public float SpawnPositionBorder = 0.9f;
     public GameObject WaterPlane;
@@ -28,7 +28,10 @@ public class CatchingScript : MonoBehaviour {
 
     private void Awake()
     {
-        if (WaterPlane != null)
+		MinimumWait = UserStatsScript.Instance.Fishing_MinimumWait;
+		MaximumWait = UserStatsScript.Instance.Fishing_MaximumWait;
+
+		if (WaterPlane != null)
         {
             MeshRenderer MeshRenderer = WaterPlane.GetComponent<MeshRenderer>();
 
