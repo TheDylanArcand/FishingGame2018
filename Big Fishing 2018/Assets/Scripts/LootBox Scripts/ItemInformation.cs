@@ -44,4 +44,8 @@ public static class ItemInformation
 		new KeyValuePair<string, int[]>("+ {0} - {1} Physical Damage", new int[4]{1, 10, 30, 40}),
 		new KeyValuePair<string, int[]>("{0}% change to apply level {1} Weakness on enemy", new int[4]{5, 10, 10, 25}),
 	};
+	
+	public static int SingleValueStatLength = ItemSingleValueStat.Length;
+	public static int TwoValueStatLength = ItemTwoValueStat.Length;
+	public static int TotalItemStats = SingleValueStatLength + TwoValueStatLength;
 }

@@ -122,7 +122,7 @@ public class InventoryScript : MonoBehaviour
 		EnlargedImage.sprite = item.ItemSprite;
 		EnlargedName.text = item.ItemName;
 		EnlargedTag.text = item.ItemTag;
-		EnlargedStats.text = item.ItemStats;
+		EnlargedStats.text = item.ItemStats.ToString();
 		EnlargedIndex.text = item.ItemIndex.ToString();
 	}
 

@@ -12,9 +12,12 @@ public class LootboxHandler : MonoBehaviour
 	public InventoryScript ItemTransferer;
 	public Text LootboxText;
 	public string ItemTag;
-	public string ItemStats;
-    
-    private int _LootIndex;
+	public Text ItemStats;
+
+	public int MinimumNumberOfStats = 0;
+	public int MaximumNumberOfStats = 2;
+
+	private int _LootIndex;
     private Dictionary<int, Sprite> _LootItemDictionary = new Dictionary<int, Sprite>();
 
 	void Awake ()
@@ -41,10 +44,11 @@ public class LootboxHandler : MonoBehaviour
         ItemImage.sprite = _LootItemDictionary[_LootIndex];
 		ItemText.text = GenerateName(_LootIndex);
 
-		ItemImage.gameObject.SetActive(true);
-        ItemText.gameObject.SetActive(true);
+        ItemText.gameObject.transform.parent.gameObject.SetActive(true);
 
-		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag, ItemStats);
+		ItemStats.text = GenerateStats();
+
+		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag, ItemStats.text.ToString());
 
 		UserStatsScript.Instance.LootBoxCount--;
 		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
@@ -55,10 +59,8 @@ public class LootboxHandler : MonoBehaviour
     {
         LootBox.SetActive(true);
 
-		ItemImage.gameObject.SetActive(false);
-
-        ItemText.gameObject.SetActive(false);
-    }
+		ItemText.gameObject.transform.parent.gameObject.SetActive(false);
+	}
 
     string GenerateName(int index)
     {
@@ -95,7 +97,31 @@ public class LootboxHandler : MonoBehaviour
 
 	string GenerateStats()
 	{
-		string Stats = "0";
+		string Stats = "";
+		Dictionary<int, char> UsedStats = new Dictionary<int, char>();
+
+		int NumberOfItemStats = Random.Range(MinimumNumberOfStats, MaximumNumberOfStats + 1);
+
+		for (int i = 0; i < NumberOfItemStats; i++)
+		{
+			int stat;
+			do
+			{
+				stat = Random.Range(0, ItemInformation.TotalItemStats);
+
+			} while (UsedStats.ContainsKey(stat));
+
+			UsedStats.Add(stat, '0');
+
+			Stats += RetrieveStat(stat);
+			if(i < NumberOfItemStats -1)
+			{
+				Stats += '\n';
+				Stats += '\n';
+			}
+		}
+
+		UsedStats.Clear();
 
 		return Stats;
 	}
@@ -105,6 +131,36 @@ public class LootboxHandler : MonoBehaviour
 		Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
 
 		return Random.Range(0, Dict.Count);
+	}
+
+	private string RetrieveStat(int index)
+	{
+		KeyValuePair<string, int[]> RetrievedStat = new KeyValuePair<string, int[]>();
+
+		string Stat;
+
+		if(index > ItemInformation.SingleValueStatLength -1)
+		{
+			if(index > ItemInformation.TwoValueStatLength -1)
+			{
+				RetrievedStat =  ItemInformation.ItemTwoValueStat[index - ItemInformation.SingleValueStatLength];
+
+				Stat = string.Format(RetrievedStat.Key, Random.Range(RetrievedStat.Value[0], RetrievedStat.Value[1]), Random.Range(RetrievedStat.Value[2], RetrievedStat.Value[3]));
+			}
+			else
+			{
+				Debug.Log("Index too big, figure out what went wrong");
+				return "Error";
+			};
+		}
+		else
+		{
+			RetrievedStat = ItemInformation.ItemSingleValueStat[index];
+
+			Stat = string.Format(RetrievedStat.Key, Random.Range(RetrievedStat.Value[0], RetrievedStat.Value[1]));
+		}
+
+		return Stat;
 	}
 
 }
