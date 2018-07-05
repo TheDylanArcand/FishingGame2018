@@ -20,6 +20,7 @@ public class InventoryScript : MonoBehaviour
 		public Sprite ItemSprite;
 		public string ItemName;
 		public string ItemTag;
+		public string ItemStats;
 		public int    ItemIndex;
 
 		internal ItemStruct(ItemStruct item)
@@ -27,6 +28,7 @@ public class InventoryScript : MonoBehaviour
 			ItemSprite = item.ItemSprite;
 			ItemName = item.ItemName;
 			ItemTag = item.ItemTag;
+			ItemStats = item.ItemStats;
 			ItemIndex = item.ItemIndex;
 		}
 
@@ -35,6 +37,7 @@ public class InventoryScript : MonoBehaviour
 			ItemSprite = null;
 			ItemName = null;
 			ItemTag = _UnusedSlot;
+			ItemStats = null;
 		}
 	};
 
@@ -45,6 +48,7 @@ public class InventoryScript : MonoBehaviour
 	public Image	EnlargedImage;
 	public Text		EnlargedName;
 	public Text		EnlargedTag;
+	public Text		EnlargedStats;
 	public Text		EnlargedIndex;
 
 	private const string _UnusedSlot = "00";
@@ -69,7 +73,7 @@ public class InventoryScript : MonoBehaviour
 	}
 
 	//Adds a created item into the list
-	public void AddItem(Sprite sprite, string name, string tag)
+	public void AddItem(Sprite sprite, string name, string tag, string stats)
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
@@ -80,6 +84,7 @@ public class InventoryScript : MonoBehaviour
 				Inventory[i].ItemSprite = sprite;
 				Inventory[i].ItemName = name;
 				Inventory[i].ItemTag = tag;
+				Inventory[i].ItemStats = stats;
 				return;
             }
         }
@@ -117,6 +122,7 @@ public class InventoryScript : MonoBehaviour
 		EnlargedImage.sprite = item.ItemSprite;
 		EnlargedName.text = item.ItemName;
 		EnlargedTag.text = item.ItemTag;
+		EnlargedStats.text = item.ItemStats;
 		EnlargedIndex.text = item.ItemIndex.ToString();
 	}
 

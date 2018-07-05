@@ -12,6 +12,7 @@ public class LootboxHandler : MonoBehaviour
 	public InventoryScript ItemTransferer;
 	public Text LootboxText;
 	public string ItemTag;
+	public string ItemStats;
     
     private int _LootIndex;
     private Dictionary<int, Sprite> _LootItemDictionary = new Dictionary<int, Sprite>();
@@ -43,7 +44,7 @@ public class LootboxHandler : MonoBehaviour
 		ItemImage.gameObject.SetActive(true);
         ItemText.gameObject.SetActive(true);
 
-		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag);
+		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag, ItemStats);
 
 		UserStatsScript.Instance.LootBoxCount--;
 		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
@@ -91,6 +92,13 @@ public class LootboxHandler : MonoBehaviour
 
         return (itemPrefix + " " + ItemTag + " of " + itemSuffix).ToString();
     }
+
+	string GenerateStats()
+	{
+		string Stats = "0";
+
+		return Stats;
+	}
 
 	public int RandomIndex(Dictionary<int, Sprite> Dict)
 	{
