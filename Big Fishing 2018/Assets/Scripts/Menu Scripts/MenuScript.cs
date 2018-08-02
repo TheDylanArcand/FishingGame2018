@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//using UnityEditor;
 
-public class MenuScript : MonoBehaviour {
+public class MenuScript : MonoBehaviour
+{
+	public void GotoMainMenu()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_MAINMENU, LoadSceneMode.Single);
+	}
 
-    private const string SCENE_MAINMENU = "Main-Menu Scene";
-    private const string SCENE_LOOTBOX = "Loot-Box Scene";
-    private const string SCENE_FISHING = "Fishing Scene";
-    private const string SCENE_SKILLTREE = "Skill Tree Scene";
+	public void GotoLootBox()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_LOOTBOX, LoadSceneMode.Single);
+	}
 
-    public void GotoMainMenu()
-    {
-        SceneManager.LoadScene(SCENE_MAINMENU);
-    }
+	public void GotoFishing()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_FISHING, LoadSceneMode.Single);
+	}
 
-    public void GotoLootBox()
-    {
-        SceneManager.LoadScene(SCENE_LOOTBOX);
-    }
+	public void GotoSkillTree()
+	{
+		SceneManager.LoadScene(ConstSceneScript.SCENE_SKILLTREE, LoadSceneMode.Single);
+	}
 
-    public void GotoFishing()
-    {
-        SceneManager.LoadScene(SCENE_FISHING);
-    }
-
-    public void GotoSkillTree()
-    {
-        SceneManager.LoadScene(SCENE_SKILLTREE);
-    }
+	public void CloseProgram()
+	{
+		Application.Quit();
+	}
 }

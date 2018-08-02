@@ -6,19 +6,19 @@ public class ItemSortingAlgorithm : MonoBehaviour
 {
 	private InventoryScript _InventorySize = new InventoryScript();
 
-	public void InitiateSort(InventoryScript ItemHolder)
+	public void InitiateSort()
 	{
-		Sort(ItemHolder.Items);
+		Sort();
 	}
-
-	private void Sort(ItemScript[] Items)
+	
+	private void Sort()
 	{
-		ItemScript[] ChestplateArray = new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] GlovesArray = new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] HelmArray = new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] PantsArray = new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] BootsArray = new ItemScript[_InventorySize.Items.Length];
-		ItemScript[] WeaponArray = new ItemScript[_InventorySize.Items.Length];
+		InventoryScript.ItemStruct[] ChestplateArray =	new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
+		InventoryScript.ItemStruct[] GlovesArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
+		InventoryScript.ItemStruct[] HelmArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
+		InventoryScript.ItemStruct[] PantsArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
+		InventoryScript.ItemStruct[] BootsArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
+		InventoryScript.ItemStruct[] WeaponArray =		new InventoryScript.ItemStruct[_InventorySize.Inventory.Length];
 		int ChestplateIndex = 0;
 		int GlovesIndex = 0;
 		int HelmIndex = 0;
@@ -26,73 +26,72 @@ public class ItemSortingAlgorithm : MonoBehaviour
 		int BootsIndex = 0;
 		int WeaponIndex = 0;
 		int TotalIndex = 0;
-
-		foreach (ItemScript item in Items)
+	
+		foreach (InventoryScript.ItemStruct item in InventoryScript.InventoryInstance.Inventory)
 		{
-			switch (item.SlotTag)
+			switch (item.ItemTag)
 			{
 				case "Chestpiece":
-					ChestplateArray[ChestplateIndex] = new ItemScript(item);
-					++ChestplateIndex;
-					item.CleanItem();
+					TempArrayFiller(ref ChestplateIndex	, ChestplateArray	, item);
 					break;
 				case "Gloves":
-					GlovesArray[GlovesIndex] = new ItemScript(item);
-					++GlovesIndex;
-					item.CleanItem();
+					TempArrayFiller(ref GlovesIndex		, GlovesArray		, item);
 					break;
 				case "Helm":
-					HelmArray[HelmIndex] = new ItemScript(item);
-					++HelmIndex;
-					item.CleanItem();
+					TempArrayFiller(ref HelmIndex		, HelmArray			, item);
 					break;
 				case "Pants":
-					PantsArray[PantsIndex] = new ItemScript(item);
-					++PantsIndex;
-					item.CleanItem();
+					TempArrayFiller(ref PantsIndex		, PantsArray		, item);
 					break;
 				case "Boots":
-					BootsArray[BootsIndex] = new ItemScript(item);
-					++BootsIndex;
-					item.CleanItem();
+					TempArrayFiller(ref BootsIndex		, BootsArray		, item);
 					break;
 				case "Weapon":
-					WeaponArray[WeaponIndex] = new ItemScript(item);
-					++WeaponIndex;
-					item.CleanItem();
+					TempArrayFiller(ref WeaponIndex		, WeaponArray		, item);
 					break;
 				default:
 					break;
 			}
 		}
 
+		for (int i = 0; i < InventoryScript.InventoryInstance.Inventory.Length; i++)
+		{
+			InventoryScript.InventoryInstance.Inventory[i].CleanItem();
+		}
+	
 		if (ChestplateIndex > 0)
-			TotalIndex = AddToOldList(Items, ChestplateArray, TotalIndex, ChestplateIndex);
-
-		if (GlovesIndex > 0)
-			TotalIndex = AddToOldList(Items, GlovesArray, TotalIndex, GlovesIndex);
-
-		if (HelmIndex > 0)
-			TotalIndex = AddToOldList(Items, HelmArray, TotalIndex, HelmIndex);
-
-		if (PantsIndex > 0)
-			TotalIndex = AddToOldList(Items, PantsArray, TotalIndex, PantsIndex);
-
-		if (BootsIndex > 0)
-			TotalIndex = AddToOldList(Items, BootsArray, TotalIndex, BootsIndex);
-
-		if (WeaponIndex > 0)
-			TotalIndex = AddToOldList(Items, WeaponArray, TotalIndex, WeaponIndex);
-
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, ChestplateArray	, TotalIndex, ChestplateIndex);
+	
+		if (GlovesIndex		> 0)
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, GlovesArray		, TotalIndex, GlovesIndex);
+	
+		if (HelmIndex		> 0)
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, HelmArray		, TotalIndex, HelmIndex);
+	
+		if (PantsIndex		> 0)
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, PantsArray		, TotalIndex, PantsIndex);
+	
+		if (BootsIndex		> 0)
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, BootsArray		, TotalIndex, BootsIndex);
+	
+		if (WeaponIndex		> 0)
+			TotalIndex = AddToOldList(InventoryScript.InventoryInstance.Inventory, WeaponArray		, TotalIndex, WeaponIndex);
+	
 	}
 
-	private int AddToOldList(ItemScript[] MainScript, ItemScript[] TempScript, int Index, int ArrayLength)
+	private void TempArrayFiller(ref int index, InventoryScript.ItemStruct[] array, InventoryScript.ItemStruct item)
+	{
+		array[index] = new InventoryScript.ItemStruct(item);
+		++index;
+	}
+	
+	private int AddToOldList(InventoryScript.ItemStruct[] MainScript, InventoryScript.ItemStruct[] TempScript, int Index, int ArrayLength)
 	{
 		for (int i = Index; i < Index + ArrayLength; i++)
 		{
-			MainScript[i] = new ItemScript(TempScript[i - Index]);
+			MainScript[i] = new InventoryScript.ItemStruct(TempScript[i - Index]);
 		}
-
+	
 		return Index + ArrayLength;
 	}
 }

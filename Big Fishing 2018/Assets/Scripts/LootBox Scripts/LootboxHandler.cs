@@ -2,43 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class LootboxHandler : MonoBehaviour
 {
     public GameObject LootBox;
-    public List<GameObject> LootItem;
+    public List<Sprite> LootItem;
     public Text ItemText;
-	public ItemScript CreatedLoot;
+	public Image ItemImage;
 	public InventoryScript ItemTransferer;
+	public Text LootboxText;
+	public string ItemTag;
+	public Text ItemStats;
 
-	private string[] _ItemPrefix =
-    {
-        "Fast",
-        "Strong",
-        "Beefy",
-        "Searing",
-        "Crystal",
-        "Limestone",
-        "Spooky",
-        "Scary",
-        "Skeleton"
-    };
+	public int MinimumNumberOfStats = 0;
+	public int MaximumNumberOfStats = 2;
 
-    private string[] _ItemSuffix =
-    {
-        "Insanity",
-        "Flame",
-        "Health",
-        "Resistance",
-        "Life",
-        "Destiny",
-        "Pain",
-        "Nature"
-    };
-    
-    private int _LootIndex;
-    private Dictionary<int, GameObject> _LootItemDictionary = new Dictionary<int, GameObject>();
+	private int _LootIndex;
+    private Dictionary<int, Sprite> _LootItemDictionary = new Dictionary<int, Sprite>();
 
 	void Awake ()
     {
@@ -52,71 +32,135 @@ public class LootboxHandler : MonoBehaviour
             }
         }
 
-        if (_LootItemDictionary != null)
-        {
-            Debug.Log("There are things in LootItemDictionary");
-        }
+		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
 	}
 	
     public void OpenLootBox()
     {
         LootBox.SetActive(false);
 
-        _LootIndex = GameManager.Instance.RandomIndex(_LootItemDictionary);
+        _LootIndex = RandomIndex(_LootItemDictionary);
 
-        _LootItemDictionary[_LootIndex].SetActive(true);
+        ItemImage.sprite = _LootItemDictionary[_LootIndex];
+		ItemText.text = GenerateName(_LootIndex);
 
-        ItemText.gameObject.SetActive(true);
+        ItemText.gameObject.transform.parent.gameObject.SetActive(true);
 
-		CreatedLoot.Sprite = _LootItemDictionary[_LootIndex].GetComponent<Image>().sprite;
-		ItemText.text = CreatedLoot.Name = GenerateName(_LootIndex).ToString();
+		ItemStats.text = GenerateStats();
+
+		ItemTransferer.AddItem(ItemImage.sprite, ItemText.text.ToString(), ItemTag, ItemStats.text.ToString());
+
+		UserStatsScript.Instance.LootBoxCount--;
+		LootboxText.text = "Lootboxes: " + UserStatsScript.Instance.LootBoxCount;
 
 	}
 
     public void CloseLootBox()
     {
-		//AssetDatabase.CreateAsset(ItemScript, )
-		ItemTransferer.AddItem(CreatedLoot);
-
         LootBox.SetActive(true);
 
-        _LootItemDictionary[_LootIndex].SetActive(false);
-
-        ItemText.gameObject.SetActive(false);
-    }
+		ItemText.gameObject.transform.parent.gameObject.SetActive(false);
+	}
 
     string GenerateName(int index)
     {
-        string itemType = "null";
-        string itemPrefix = _ItemPrefix[Random.Range(0, _ItemPrefix.Length)];
-        string itemSuffix = _ItemSuffix[Random.Range(0, _ItemSuffix.Length)];
+        string itemPrefix = ItemInformation.ItemPrefix[Random.Range(0, ItemInformation.ItemPrefix.Length)];
+        string itemSuffix = ItemInformation.ItemSuffix[Random.Range(0, ItemInformation.ItemSuffix.Length)];
 
         switch (index)
         {
             case 0:
-                CreatedLoot.SlotTag = itemType = "Chestpiece";
+                ItemTag = "Chestpiece";
                 break;
             case 1:
-				CreatedLoot.SlotTag = itemType = "Gloves";
+				ItemTag = "Gloves";
                 break;
             case 2:
-				CreatedLoot.SlotTag = itemType = "Helm";
+				ItemTag = "Helm";
                 break;
             case 3:
-				CreatedLoot.SlotTag = itemType = "Pants";
+				ItemTag = "Pants";
                 break;
             case 4:
-				CreatedLoot.SlotTag = itemType = "Boots";
+				ItemTag = "Boots";
                 break;
             case 5:
-				CreatedLoot.SlotTag = itemType = "Weapon";
+				ItemTag = "Weapon";
                 break;
             default:
-				CreatedLoot.SlotTag = itemType = "Index larger than switch";
+				ItemTag = "Index larger than switch";
                 break;
         }
 
-        return (itemPrefix + " " + itemType + " of " + itemSuffix).ToString();
+        return (itemPrefix + " " + ItemTag + " of " + itemSuffix).ToString();
     }
-    
+
+	string GenerateStats()
+	{
+		string Stats = "";
+		Dictionary<int, char> UsedStats = new Dictionary<int, char>();
+
+		int NumberOfItemStats = Random.Range(MinimumNumberOfStats, MaximumNumberOfStats + 1);
+
+		for (int i = 0; i < NumberOfItemStats; i++)
+		{
+			int stat;
+			do
+			{
+				stat = Random.Range(0, ItemInformation.TotalItemStats);
+
+			} while (UsedStats.ContainsKey(stat));
+
+			UsedStats.Add(stat, '0');
+
+			Stats += RetrieveStat(stat);
+			if(i < NumberOfItemStats -1)
+			{
+				Stats += '\n';
+				Stats += '\n';
+			}
+		}
+
+		UsedStats.Clear();
+
+		return Stats;
+	}
+
+	public int RandomIndex(Dictionary<int, Sprite> Dict)
+	{
+		Random.InitState((int)System.DateTime.Now.Millisecond + System.DateTime.Now.Minute);
+
+		return Random.Range(0, Dict.Count);
+	}
+
+	private string RetrieveStat(int index)
+	{
+		KeyValuePair<string, int[]> RetrievedStat = new KeyValuePair<string, int[]>();
+
+		string Stat;
+
+		if(index > ItemInformation.SingleValueStatLength -1)
+		{
+			if(index > ItemInformation.TwoValueStatLength -1)
+			{
+				RetrievedStat =  ItemInformation.ItemTwoValueStat[index - ItemInformation.SingleValueStatLength];
+
+				Stat = string.Format(RetrievedStat.Key, Random.Range(RetrievedStat.Value[0], RetrievedStat.Value[1]), Random.Range(RetrievedStat.Value[2], RetrievedStat.Value[3]));
+			}
+			else
+			{
+				Debug.Log("Index too big, figure out what went wrong");
+				return "Error";
+			};
+		}
+		else
+		{
+			RetrievedStat = ItemInformation.ItemSingleValueStat[index];
+
+			Stat = string.Format(RetrievedStat.Key, Random.Range(RetrievedStat.Value[0], RetrievedStat.Value[1]));
+		}
+
+		return Stat;
+	}
+
 }
