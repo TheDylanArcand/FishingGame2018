@@ -295,8 +295,8 @@ MonoBehaviour:
   PowerRankMult: 100
   EXP: 0
   LootBoxCount: 5
-  Fishing_MinimumWait: 0.5
-  Fishing_MaximumWait: 4
+  Fishing_MinimumWait: 0.15
+  Fishing_MaximumWait: 0.5
 --- !u!4 &238816916
 Transform:
   m_ObjectHideFlags: 0
