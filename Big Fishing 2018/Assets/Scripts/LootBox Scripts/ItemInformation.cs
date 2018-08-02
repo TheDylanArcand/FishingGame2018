@@ -34,7 +34,7 @@ public static class ItemInformation
 		//new KeyValuePair<string, int[]>(Name of stat with "{0}" for where value is placed , new int[2] Array for lower and upper values of stat),
 
 		new KeyValuePair<string, int[]>("+ {0} Physical Damage", new int[2]{50, 100}),
-		new KeyValuePair<string, int[]>("Attack Speed {0}% Increaase", new int[2]{15, 20}),
+		new KeyValuePair<string, int[]>("Attack Speed Increase by {0}%", new int[2]{15, 20}),
 	};
 
 	public static KeyValuePair<string, int[]>[] ItemTwoValueStat =
