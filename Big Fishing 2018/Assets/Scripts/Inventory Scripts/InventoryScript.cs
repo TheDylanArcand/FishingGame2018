@@ -50,6 +50,8 @@ public class InventoryScript : MonoBehaviour
 	public Text		EnlargedTag;
 	public Text		EnlargedStats;
 	public Text		EnlargedIndex;
+	
+	public Sprite EmptyItemSprite;
 
 	private const string _UnusedSlot = "00";
 
@@ -63,7 +65,7 @@ public class InventoryScript : MonoBehaviour
 
 		for (int i = 0; i < NumberOfItemSlots; i++)
 		{
-			if (Inventory[i].ItemSprite == null)
+			if (Inventory[i].ItemSprite == EmptyItemSprite || Inventory[i].ItemSprite == null)
 			{
 				Inventory[i].ItemName = "AAA";
 				Inventory[i].ItemTag = _UnusedSlot;
@@ -109,7 +111,7 @@ public class InventoryScript : MonoBehaviour
 			}
 			else
 			{
-				ItemSlots[i].GetComponent<Image>().sprite = null;
+				ItemSlots[i].GetComponent<Image>().sprite = EmptyItemSprite;
 				ItemSlots[i].GetComponent<Button>().interactable = false;
 			}
 			Inventory[i].ItemIndex = i;

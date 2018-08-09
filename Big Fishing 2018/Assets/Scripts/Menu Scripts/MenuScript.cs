@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using UnityEditor;
+
+/// <summary>
+/// Functions that will be hooked up to buttons for traveling between scenes
+/// </summary>
 
 public class MenuScript : MonoBehaviour
 {
@@ -19,11 +22,6 @@ public class MenuScript : MonoBehaviour
 	public void GotoFishing()
 	{
 		SceneManager.LoadScene(ConstSceneScript.SCENE_FISHING, LoadSceneMode.Single);
-	}
-
-	public void GotoSkillTree()
-	{
-		SceneManager.LoadScene(ConstSceneScript.SCENE_SKILLTREE, LoadSceneMode.Single);
 	}
 
 	public void CloseProgram()

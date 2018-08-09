@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sorting algorithm for all the items in the inventory
+/// 
+/// Works by putting items into catagorized arrays then concatinating the arrays back into the original array
+/// </summary>
+
 public class ItemSortingAlgorithm : MonoBehaviour
 {
 	private InventoryScript _InventorySize = new InventoryScript();

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script holds information meant to be persisntant between scenes
+/// </summary>
+
 public class UserStatsScript : MonoBehaviour
 {
 	public static UserStatsScript Instance;

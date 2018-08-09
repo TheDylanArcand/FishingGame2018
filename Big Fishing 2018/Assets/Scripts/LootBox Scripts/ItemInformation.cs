@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Cosmetic text for equipment meant to be easily modified by whoever wants to change information
+/// </summary>
+
 public static class ItemInformation
 {
 	public static string[] ItemPrefix =
@@ -11,7 +15,7 @@ public static class ItemInformation
 		"Beefy",
 		"Searing",
 		"Crystal",
-		"Limestone",
+		"Brittle",
 		"Spooky",
 		"Scary",
 		"Skeleton"
@@ -22,7 +26,7 @@ public static class ItemInformation
 		"Insanity",
 		"Flame",
 		"Health",
-		"Resistance",
+		"Beef",
 		"Life",
 		"Destiny",
 		"Pain",
