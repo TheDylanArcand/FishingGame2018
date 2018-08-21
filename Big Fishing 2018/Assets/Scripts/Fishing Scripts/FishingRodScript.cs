@@ -10,16 +10,22 @@ public class FishingRodScript : MonoBehaviour
 {
 	public Transform Bobber;
 	public Transform Rod;
+	public LineRenderer FishingLine;
+
+	private void Awake()
+	{
+		FishingLine.SetPosition(0, Rod.transform.position);
+	}
 
 	private void Update()
 	{
 		if(Bobber.gameObject.activeSelf == true)
 		{
-			transform.LookAt(Bobber);
+			FishingLine.SetPosition(1, Bobber.transform.position);
 		}
 		else
 		{
-			transform.LookAt(Rod);
+			FishingLine.SetPosition(1, Rod.transform.position);
 		}
 	}
 }
