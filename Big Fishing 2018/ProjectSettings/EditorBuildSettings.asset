@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Loot-Box Scene.unity
     guid: 3ff77c0426f97654abe4b06d5a565622
   - enabled: 0
-    path: Assets/Scenes/Skill Tree Scene.unity
+    path: 
     guid: a8fd6e8573a1eaf4abeebc7180ab4014
